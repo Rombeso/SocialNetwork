@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import  {addPost, statePropsType} from "./redux/state";
+import {addPost, statePropsType, updateNewPostText} from "./redux/state";
 
 
 export let rerenderEntireTree = (state: statePropsType) => {
@@ -11,6 +11,8 @@ export let rerenderEntireTree = (state: statePropsType) => {
             <App
                 appState={state}
                 addPost={addPost}
+                updateNewPostText={updateNewPostText}
+                newText={state.profilePage.newPostText}
             />
         </React.StrictMode>,
         document.getElementById('root')

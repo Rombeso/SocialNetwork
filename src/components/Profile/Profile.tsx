@@ -6,7 +6,9 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 type MassageMyPostPropsType = {
     massageMyPost: Array<massageMyPostPropsType>
-    addPost: (post: string) => void;
+    addPost: () => void;
+    updateNewPostText: (newText: string)=> void
+    newText:string
 }
 
 
@@ -15,6 +17,10 @@ export const Profile = (props: MassageMyPostPropsType) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts massageMyPost={props.massageMyPost} addPost={props.addPost}/>
+            <MyPosts massageMyPost={props.massageMyPost}
+                     addPost={props.addPost}
+                     updateNewPostText={props.updateNewPostText}
+                     newText={props.newText}
+            />
         </div>)
 }

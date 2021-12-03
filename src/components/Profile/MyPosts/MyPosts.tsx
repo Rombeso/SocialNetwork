@@ -11,7 +11,9 @@ import {massageMyPostPropsType} from "../../../redux/state";
 
 type SomePT = {
     massageMyPost: Array<massageMyPostPropsType>
-    addPost: (post: string) => void;
+    addPost: () => void;
+    updateNewPostText: (newText: string)=> void
+    newText:string
 }
 
 export const MyPosts = (props: SomePT) => {
@@ -21,11 +23,16 @@ export const MyPosts = (props: SomePT) => {
     const addPost = () => {
 
         if (newPostElement.current) {
-            let text = newPostElement.current.value
-            props.addPost(text)
-            newPostElement.current.value  = ''
+            // let text = newPostElement.current.value
+            props.addPost()
         }
+    }
 
+    let onPostChange = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            props.updateNewPostText(text);
+        }
     }
 
     return (
@@ -33,7 +40,10 @@ export const MyPosts = (props: SomePT) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange}
+                              ref={newPostElement}
+                              value={props.newText}
+                    />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

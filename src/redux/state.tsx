@@ -19,6 +19,7 @@ export type massageDataPropsType =
 
 export type profilePagePropsType = {
     massageMyPost: Array<massageMyPostPropsType>
+    newPostText: string
 }
 
 export type dialogPagePropsType = {
@@ -29,7 +30,6 @@ export type dialogPagePropsType = {
 export type statePropsType = {
     profilePage: profilePagePropsType
     dialogPage: dialogPagePropsType
-
 }
 
 let state: statePropsType = {
@@ -37,7 +37,8 @@ let state: statePropsType = {
         massageMyPost: [
             {id: '1', massage: 'Hi, how are you?', likesCounter: '5'},
             {id: '2', massage: "It's my first post", likesCounter: '12'}
-        ]
+        ],
+        newPostText: 'it-kamasutra.com'
     },
     dialogPage: {
         dialogDat: [
@@ -54,14 +55,19 @@ let state: statePropsType = {
     }
 }
 
-export const addPost =  (post: string) => {
+export const addPost =  () => {
     let newPost: massageMyPostPropsType = {
         id: '5',
-        massage: post,
+        massage: state.profilePage.newPostText,
         likesCounter: '0'
     }
     state.profilePage.massageMyPost.push(newPost);
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state);
+}
 
+export const updateNewPostText =  (newText: string) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
