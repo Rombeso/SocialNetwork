@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (state: any) => {
+    console.log('state changed');
+}
 
 export type massageMyPostPropsType = {
     id?: string,
@@ -69,6 +71,10 @@ export const addPost =  () => {
 export const updateNewPostText =  (newText: string) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
+}
+
+export const subscribe = (observer: ()=>void) =>{
+    rerenderEntireTree = observer;
 }
 
 export default state
