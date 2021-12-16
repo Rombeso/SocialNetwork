@@ -1,5 +1,5 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
+import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
+import dialogsReducer, {AddMassageActionType, UpdateNewMassageText} from "./dialogs-reducer";
 
 export type massageMyPostPropsType = {
     id?: string,
@@ -39,18 +39,11 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     getState: () => statePropsType
     dispatch: (action: DispatchActionType) => void
-
 }
-
 export type DispatchActionType = AddPostActionType |
     UpdateNewPostTextActionType |
     AddMassageActionType |
     UpdateNewMassageText
-
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
-type AddMassageActionType = ReturnType<typeof addMassageAC>
-type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
 export const addPostAC = () => {
     return {

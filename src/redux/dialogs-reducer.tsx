@@ -1,4 +1,10 @@
-import {dialogDatPropsType, DispatchActionType, massageDataPropsType, massageMyPostPropsType} from "./state";
+import {
+    addMassageAC,
+    dialogDatPropsType,
+    DispatchActionType,
+    massageDataPropsType,
+    massageMyPostPropsType, updateNewMassageTextAC
+} from "./state";
 
 
 type StateType = {
@@ -28,5 +34,7 @@ const dialogsReducer = (state: StateType, action: DispatchActionType) => {
 
 
 }
+export type AddMassageActionType = ReturnType<typeof addMassageAC>
+export type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
 export default dialogsReducer

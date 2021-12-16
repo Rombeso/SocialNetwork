@@ -1,4 +1,4 @@
-import {DispatchActionType, massageMyPostPropsType} from "./state";
+import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "./state";
 
 
 type StateType = {
@@ -27,5 +27,7 @@ const profileReducer = (state: StateType, action: DispatchActionType) => {
     }
 
 }
+export type AddPostActionType = ReturnType<typeof addPostAC>
+export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
 
 export default profileReducer
