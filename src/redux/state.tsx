@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
 export type massageMyPostPropsType = {
     id?: string,
     massage: string,
@@ -36,6 +39,7 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     getState: () => statePropsType
     dispatch: (action: DispatchActionType) => void
+
 }
 
 export type DispatchActionType = AddPostActionType |
@@ -107,31 +111,10 @@ let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD_POST') {
-            let newPost: massageMyPostPropsType = {
-                id: '5',
-                massage: this._state.profilePage.newPostText,
-                likesCounter: '0'
-            }
-            this._state.profilePage.massageMyPost.push(newPost);
-            this._state.profilePage.newPostText = ''
-            this._rerenderEntireTree(this._state);
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._rerenderEntireTree(this._state);
-        } else if (action.type === 'ADD_MASSAGE') {
-            let newMassage: massageDataPropsType = {
-                massage: this._state.dialogPage.newMassageText,
-                id: "4"
-            }
-            this._state.dialogPage.massageData.push(newMassage);
-            this._state.dialogPage.newMassageText = ''
-            this._rerenderEntireTree(this._state);
-        } else if (action.type === 'UPDATE_NEW_MASSAGE_TEXT') {
-            this._state.dialogPage.newMassageText = action.newMassage;
-            this._rerenderEntireTree(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+        this._rerenderEntireTree(this._state);
     }
 }
 
-    export default store
+export default store
