@@ -1,7 +1,3 @@
-let rerenderEntireTree = (state: any) => {
-    console.log('state changed');
-}
-
 export type massageMyPostPropsType = {
     id?: string,
     massage: string,
@@ -33,48 +29,61 @@ export type statePropsType = {
     profilePage: profilePagePropsType
     dialogPage: dialogPagePropsType
 }
+export type StoreType = {
+    _state: statePropsType
+    _rerenderEntireTree: (state: any)=>void
+    addPost: ()=>void
+    updateNewPostText: (newText: string)=>void
+    subscribe: (observer: () => void)=>void
+    getState: ()=>statePropsType
+}
 
-let state: statePropsType = {
-    profilePage: {
-        massageMyPost: [
-            {id: '1', massage: 'Hi, how are you?', likesCounter: '5'},
-            {id: '2', massage: "It's my first post", likesCounter: '12'}
-        ],
-        newPostText: 'it-kamasutra.com'
+let store: StoreType = {
+    _state: {
+        profilePage: {
+            massageMyPost: [
+                {id: '1', massage: 'Hi, how are you?', likesCounter: '5'},
+                {id: '2', massage: "It's my first post", likesCounter: '12'}
+            ],
+            newPostText: 'it-kamasutra.com'
+        },
+        dialogPage: {
+            dialogDat: [
+                {name: 'Dima', id: '1'},
+                {name: 'Roma', id: '2'},
+                {name: 'Petya', id: '3'},
+                {name: 'Sasha', id: '4'}
+            ],
+            massageData: [
+                {massage: "Hello, how are you?", id: "1"},
+                {massage: "I'm fine, and you?", id: '2'},
+                {massage: "I'am ok. Today is bad wather.", id: '3'}
+            ]
+        }
     },
-    dialogPage: {
-        dialogDat: [
-            {name: 'Dima', id: '1'},
-            {name: 'Roma', id: '2'},
-            {name: 'Petya', id: '3'},
-            {name: 'Sasha', id: '4'}
-        ],
-        massageData: [
-            {massage: "Hello, how are you?", id: "1"},
-            {massage: "I'm fine, and you?", id: '2'},
-            {massage: "I'am ok. Today is bad wather.", id: '3'}
-        ]
+    _rerenderEntireTree(state: any) {
+        console.log('state changed');
+    },
+    addPost() {
+        let newPost: massageMyPostPropsType = {
+            id: '5',
+            massage: this._state.profilePage.newPostText,
+            likesCounter: '0'
+        }
+        this._state.profilePage.massageMyPost.push(newPost);
+        this._state.profilePage.newPostText = ''
+        this._rerenderEntireTree(this._state);
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        this._rerenderEntireTree(this._state);
+    },
+    subscribe(observer: () => void) {
+        this._rerenderEntireTree = observer;
+    },
+    getState() {
+        return this._state
     }
 }
 
-export const addPost =  () => {
-    let newPost: massageMyPostPropsType = {
-        id: '5',
-        massage: state.profilePage.newPostText,
-        likesCounter: '0'
-    }
-    state.profilePage.massageMyPost.push(newPost);
-    state.profilePage.newPostText = ''
-    rerenderEntireTree(state);
-}
-
-export const updateNewPostText =  (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-}
-
-export const subscribe = (observer: ()=>void) =>{
-    rerenderEntireTree = observer;
-}
-
-export default state
+export default store

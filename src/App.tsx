@@ -9,14 +9,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
-import {
-    addPost,
-    dialogDatPropsType,
-    massageDataPropsType,
-    massageMyPostPropsType,
-    statePropsType,
-    updateNewPostText
-} from './redux/state';
+import {statePropsType, StoreType} from './redux/state';
 
 
 type AppPropsType = {
@@ -24,10 +17,12 @@ type AppPropsType = {
     addPost: ()=>void
     updateNewPostText: (newText: string)=> void
     newText:string
+    store: StoreType
 }
 
 
-const App = (props: AppPropsType) => {
+const App: React.FC<AppPropsType> = (props) => {
+   const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -40,8 +35,8 @@ const App = (props: AppPropsType) => {
                         massageData={props.appState.dialogPage.massageData}/>}/>
                     <Route path='/profile' render={() => <Profile
                         massageMyPost={props.appState.profilePage.massageMyPost}
-                        addPost={props.addPost}
-                        updateNewPostText={props.updateNewPostText}
+                        addPost={props.addPost.bind(props.store)}
+                        updateNewPostText={props.updateNewPostText.bind(props.store)}
                         newText={props.newText}
                     />}/>
                     <Route path='/music' render={() => <Music/>}/>
