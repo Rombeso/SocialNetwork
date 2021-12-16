@@ -1,14 +1,15 @@
 import React from "react";
 import classes from './Profile.module.css'
-import {massageMyPostPropsType} from "./../../redux/state";
+import {DispatchActionType, massageMyPostPropsType} from "./../../redux/state";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts} from "./MyPosts/MyPosts";
 
 type MassageMyPostPropsType = {
     massageMyPost: Array<massageMyPostPropsType>
-    addPost: () => void;
-    updateNewPostText: (newText: string)=> void
+    // addPost: () => void;
+    // updateNewPostText: (newText: string)=> void
     newText:string
+    dispatch: (action: DispatchActionType)=>void
 }
 
 
@@ -18,9 +19,10 @@ export const Profile = (props: MassageMyPostPropsType) => {
         <div>
             <ProfileInfo />
             <MyPosts massageMyPost={props.massageMyPost}
-                     addPost={props.addPost}
-                     updateNewPostText={props.updateNewPostText}
+                     // addPost={props.addPost}
+                     // updateNewPostText={props.updateNewPostText}
                      newText={props.newText}
+                     dispatch={props.dispatch}
             />
         </div>)
 }

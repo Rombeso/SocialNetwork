@@ -14,8 +14,8 @@ import {statePropsType, StoreType} from './redux/state';
 
 type AppPropsType = {
     appState: statePropsType
-    addPost: ()=>void
-    updateNewPostText: (newText: string)=> void
+    // addPost: ()=>void
+    // updateNewPostText: (newText: string)=> void
     newText:string
     store: StoreType
 }
@@ -35,9 +35,10 @@ const App: React.FC<AppPropsType> = (props) => {
                         massageData={props.appState.dialogPage.massageData}/>}/>
                     <Route path='/profile' render={() => <Profile
                         massageMyPost={props.appState.profilePage.massageMyPost}
-                        addPost={props.addPost.bind(props.store)}
-                        updateNewPostText={props.updateNewPostText.bind(props.store)}
+                        // addPost={props.addPost.bind(props.store)}
+                        // updateNewPostText={props.updateNewPostText.bind(props.store)}
                         newText={props.newText}
+                        dispatch={props.store.dispatch.bind(props.store)}
                     />}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/news' render={() => <News/>}/>
