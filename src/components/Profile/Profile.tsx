@@ -6,8 +6,6 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 type MassageMyPostPropsType = {
     massageMyPost: Array<massageMyPostPropsType>
-    // addPost: () => void;
-    // updateNewPostText: (newText: string)=> void
     newText:string
     dispatch: (action: DispatchActionType)=>void
 }
@@ -19,8 +17,6 @@ export const Profile = (props: MassageMyPostPropsType) => {
         <div>
             <ProfileInfo />
             <MyPosts massageMyPost={props.massageMyPost}
-                     // addPost={props.addPost}
-                     // updateNewPostText={props.updateNewPostText}
                      newText={props.newText}
                      dispatch={props.dispatch}
             />

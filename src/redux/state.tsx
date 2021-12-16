@@ -31,22 +31,27 @@ export type statePropsType = {
 }
 export type StoreType = {
     _state: statePropsType
-    _rerenderEntireTree: (state: any)=>void
-    // addPost: ()=>void
-    // updateNewPostText: (newText: string)=>void
-    subscribe: (observer: () => void)=>void
-    getState: ()=>statePropsType
-    dispatch: (action: DispatchActionType)=>void
+    _rerenderEntireTree: (state: any) => void
+    subscribe: (observer: () => void) => void
+    getState: () => statePropsType
+    dispatch: (action: DispatchActionType) => void
 }
 
 export type DispatchActionType = AddPostActionType | UpdateNewPostTextActionType
 
-type AddPostActionType = {
-    type: 'ADD_POST'
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+
+export const addPostAC = () => {
+    return {
+        type: "ADD_POST"
+    } as const
 }
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE_NEW_POST_TEXT'
-    newText: string
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: 'UPDATE_NEW_POST_TEXT',
+        newText: newText
+    } as const
 }
 
 let store: StoreType = {
@@ -75,27 +80,13 @@ let store: StoreType = {
     _rerenderEntireTree(state: any) {
         console.log('state changed');
     },
-    // addPost() {
-    //     let newPost: massageMyPostPropsType = {
-    //         id: '5',
-    //         massage: this._state.profilePage.newPostText,
-    //         likesCounter: '0'
-    //     }
-    //     this._state.profilePage.massageMyPost.push(newPost);
-    //     this._state.profilePage.newPostText = ''
-    //     this._rerenderEntireTree(this._state);
-    // },
-    // updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._rerenderEntireTree(this._state);
-    // },
     subscribe(observer: () => void) {
         this._rerenderEntireTree = observer;
     },
     getState() {
         return this._state
     },
-    dispatch(action){
+    dispatch(action) {
         if (action.type === 'ADD_POST') {
             let newPost: massageMyPostPropsType = {
                 id: '5',
@@ -105,7 +96,7 @@ let store: StoreType = {
             this._state.profilePage.massageMyPost.push(newPost);
             this._state.profilePage.newPostText = ''
             this._rerenderEntireTree(this._state);
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT'){
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._rerenderEntireTree(this._state);
         }

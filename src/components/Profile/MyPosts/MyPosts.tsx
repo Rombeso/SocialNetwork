@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {DispatchActionType, massageMyPostPropsType} from "../../../redux/state";
+import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "../../../redux/state";
 
 // type MassageMyPostPropsType = {
 //     massage: string,
@@ -26,7 +26,8 @@ export const MyPosts = (props: SomePT) => {
         if (newPostElement.current) {
             // let text = newPostElement.current.value
             // props.addPost()
-            props.dispatch({type: "ADD_POST" })
+            // props.dispatch({type: "ADD_POST" })
+            props.dispatch(addPostAC())
         }
     }
 
@@ -34,7 +35,8 @@ export const MyPosts = (props: SomePT) => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
             // props.updateNewPostText(text);
-            props.dispatch({type: "UPDATE_NEW_POST_TEXT", newText: text })
+            // props.dispatch({type: "UPDATE_NEW_POST_TEXT", newText: text })
+            props.dispatch(updateNewPostTextAC(text))
         }
     }
 
