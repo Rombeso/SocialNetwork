@@ -6,7 +6,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 type MassageMyPostPropsType = {
     massageMyPost: Array<massageMyPostPropsType>
-    newText:string
+    newPostText:string
     dispatch: (action: DispatchActionType)=>void
 }
 
@@ -17,7 +17,7 @@ export const Profile = (props: MassageMyPostPropsType) => {
         <div>
             <ProfileInfo />
             <MyPosts massageMyPost={props.massageMyPost}
-                     newText={props.newText}
+                     newPostText={props.newPostText}
                      dispatch={props.dispatch}
             />
         </div>)

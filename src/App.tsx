@@ -16,7 +16,8 @@ type AppPropsType = {
     appState: statePropsType
     // addPost: ()=>void
     // updateNewPostText: (newText: string)=> void
-    newText:string
+    newPostText:string
+    newMassageText:string
     store: StoreType
 }
 
@@ -32,12 +33,15 @@ const App: React.FC<AppPropsType> = (props) => {
                     {/* eslint-disable-next-line react/jsx-no-undef */}
                     <Route path='/dialogs' render={() => <Dialogs
                         dialogDat={props.appState.dialogPage.dialogDat}
-                        massageData={props.appState.dialogPage.massageData}/>}/>
+                        massageData={props.appState.dialogPage.massageData}
+                        newMassageText={props.newMassageText}
+                        dispatch={props.store.dispatch.bind(props.store)}
+                    />}/>
                     <Route path='/profile' render={() => <Profile
                         massageMyPost={props.appState.profilePage.massageMyPost}
                         // addPost={props.addPost.bind(props.store)}
                         // updateNewPostText={props.updateNewPostText.bind(props.store)}
-                        newText={props.newText}
+                        newPostText={props.newPostText}
                         dispatch={props.store.dispatch.bind(props.store)}
                     />}/>
                     <Route path='/music' render={() => <Music/>}/>

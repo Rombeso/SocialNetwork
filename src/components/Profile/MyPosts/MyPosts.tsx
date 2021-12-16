@@ -13,7 +13,7 @@ type SomePT = {
     massageMyPost: Array<massageMyPostPropsType>
     // addPost: () => void;
     // updateNewPostText: (newText: string)=> void
-    newText:string
+    newPostText:string
     dispatch: (action: DispatchActionType)=>void
 }
 
@@ -47,7 +47,7 @@ export const MyPosts = (props: SomePT) => {
                 <div>
                     <textarea onChange={onPostChange}
                               ref={newPostElement}
-                              value={props.newText}
+                              value={props.newPostText}
                     />
                 </div>
                 <div>

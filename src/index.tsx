@@ -14,7 +14,8 @@ let rerenderEntireTree = (state: statePropsType) => {
                 appState={store.getState()}
                 // addPost={store.addPost}
                 // updateNewPostText={store.updateNewPostText}
-                newText={store._state.profilePage.newPostText}
+                newPostText={store._state.profilePage.newPostText}
+                newMassageText={store._state.dialogPage.newMassageText}
                 store={store}
             />
         </React.StrictMode>,

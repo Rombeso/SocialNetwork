@@ -12,7 +12,7 @@ export type dialogDatPropsType = {
 export type massageDataPropsType =
     {
         massage: string
-        id: string
+        id?: string
     }
 
 export type profilePagePropsType = {
@@ -23,6 +23,7 @@ export type profilePagePropsType = {
 export type dialogPagePropsType = {
     dialogDat: Array<dialogDatPropsType>
     massageData: Array<massageDataPropsType>
+    newMassageText: string
 }
 
 export type statePropsType = {
@@ -37,10 +38,15 @@ export type StoreType = {
     dispatch: (action: DispatchActionType) => void
 }
 
-export type DispatchActionType = AddPostActionType | UpdateNewPostTextActionType
+export type DispatchActionType = AddPostActionType |
+    UpdateNewPostTextActionType |
+    AddMassageActionType |
+    UpdateNewMassageText
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+type AddMassageActionType = ReturnType<typeof addMassageAC>
+type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
 export const addPostAC = () => {
     return {
@@ -51,6 +57,19 @@ export const updateNewPostTextAC = (newText: string) => {
     return {
         type: 'UPDATE_NEW_POST_TEXT',
         newText: newText
+    } as const
+}
+
+export const addMassageAC = () => {
+    return {
+        type: 'ADD_MASSAGE'
+    } as const
+}
+
+export const updateNewMassageTextAC = (newMassage: string) => {
+    return {
+        type: 'UPDATE_NEW_MASSAGE_TEXT',
+        newMassage: newMassage
     } as const
 }
 
@@ -74,7 +93,8 @@ let store: StoreType = {
                 {massage: "Hello, how are you?", id: "1"},
                 {massage: "I'm fine, and you?", id: '2'},
                 {massage: "I'am ok. Today is bad wather.", id: '3'}
-            ]
+            ],
+            newMassageText: 'it-incubator'
         }
     },
     _rerenderEntireTree(state: any) {
@@ -99,8 +119,19 @@ let store: StoreType = {
         } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._rerenderEntireTree(this._state);
+        } else if (action.type === 'ADD_MASSAGE') {
+            let newMassage: massageDataPropsType = {
+                massage: this._state.dialogPage.newMassageText,
+                id: "4"
+            }
+            this._state.dialogPage.massageData.push(newMassage);
+            this._state.dialogPage.newMassageText = ''
+            this._rerenderEntireTree(this._state);
+        } else if (action.type === 'UPDATE_NEW_MASSAGE_TEXT') {
+            this._state.dialogPage.newMassageText = action.newMassage;
+            this._rerenderEntireTree(this._state);
         }
     }
 }
 
-export default store
+    export default store
