@@ -9,21 +9,27 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
-import {statePropsType, StoreType} from './redux/state';
+import {addMassageAC, statePropsType, StoreType} from './redux/store';
+import {ReducerType} from "./redux/redux-store";
+import {useDispatch, useSelector} from "react-redux";
+import {ProfileStateType} from "./redux/profile-reducer";
+import {DialogStateType} from "./redux/dialogs-reducer";
 
 
 type AppPropsType = {
-    appState: statePropsType
+    // appState: statePropsType
     // addPost: ()=>void
     // updateNewPostText: (newText: string)=> void
-    newPostText:string
-    newMassageText:string
-    store: StoreType
+    // newPostText:string
+    // newMassageText:string
+    // store: StoreType
 }
 
 
 const App: React.FC<AppPropsType> = (props) => {
-   const state = props.store.getState()
+    let profilePage =  useSelector<ReducerType, ProfileStateType>(state => state.profilePage)
+    let dialogPage =  useSelector<ReducerType, DialogStateType>(state => state.dialogPage)
+    // const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -32,17 +38,22 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className='app-wrapper-content'>
                     {/* eslint-disable-next-line react/jsx-no-undef */}
                     <Route path='/dialogs' render={() => <Dialogs
-                        dialogDat={props.appState.dialogPage.dialogDat}
-                        massageData={props.appState.dialogPage.massageData}
-                        newMassageText={props.newMassageText}
-                        dispatch={props.store.dispatch.bind(props.store)}
+                        // dialogDat={props.appState.dialogPage.dialogDat}
+                        // massageData={props.appState.dialogPage.massageData}
+                        // newMassageText={props.newMassageText}
+                        dialogDat={dialogPage.dialogDat}
+                        massageData={dialogPage.massageData}
+                        newMassageText={dialogPage.newMassageText}
+                        // dispatch={props.store.dispatch.bind(props.store)}
+                        // dispatch={dispatch(addMassageAC()}
                     />}/>
                     <Route path='/profile' render={() => <Profile
-                        massageMyPost={props.appState.profilePage.massageMyPost}
+                        massageMyPost={profilePage.massageMyPost}
                         // addPost={props.addPost.bind(props.store)}
                         // updateNewPostText={props.updateNewPostText.bind(props.store)}
-                        newPostText={props.newPostText}
-                        dispatch={props.store.dispatch.bind(props.store)}
+                        // newPostText={props.newPostText}
+                        newPostText={profilePage.newPostText}
+                        // dispatch={props.store.dispatch.bind(props.store)}
                     />}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/news' render={() => <News/>}/>

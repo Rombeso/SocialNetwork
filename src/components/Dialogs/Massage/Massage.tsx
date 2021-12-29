@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './../Dialogs.module.css'
-import {massageDataPropsType} from "../../../redux/state";
+import {massageDataPropsType} from "../../../redux/store";
 
 
 type MassagePropsType = {

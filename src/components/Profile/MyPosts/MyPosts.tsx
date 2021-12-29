@@ -1,7 +1,8 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "../../../redux/state";
+import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "../../../redux/store";
+import {useDispatch} from "react-redux";
 
 // type MassageMyPostPropsType = {
 //     massage: string,
@@ -14,11 +15,11 @@ type SomePT = {
     // addPost: () => void;
     // updateNewPostText: (newText: string)=> void
     newPostText:string
-    dispatch: (action: DispatchActionType)=>void
+    // dispatch: (action: DispatchActionType)=>void
 }
 
 export const MyPosts = (props: SomePT) => {
-
+    let dispatch=useDispatch();
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
@@ -27,7 +28,8 @@ export const MyPosts = (props: SomePT) => {
             // let text = newPostElement.current.value
             // props.addPost()
             // props.dispatch({type: "ADD_POST" })
-            props.dispatch(addPostAC())
+            // props.dispatch(addPostAC())
+            dispatch(addPostAC())
         }
     }
 
@@ -36,7 +38,8 @@ export const MyPosts = (props: SomePT) => {
             let text = newPostElement.current.value;
             // props.updateNewPostText(text);
             // props.dispatch({type: "UPDATE_NEW_POST_TEXT", newText: text })
-            props.dispatch(updateNewPostTextAC(text))
+            // props.dispatch(updateNewPostTextAC(text))
+            dispatch(updateNewPostTextAC(text))
         }
     }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Post.module.css'
-import {massageMyPostPropsType} from "../../../../redux/state";
+import {massageMyPostPropsType} from "../../../../redux/store";
 
 type MassageMyPostPropsType = {
     massageMyPost: Array<massageMyPostPropsType>

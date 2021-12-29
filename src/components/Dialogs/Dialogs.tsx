@@ -9,29 +9,32 @@ import {
     DispatchActionType,
     massageDataPropsType,
     updateNewMassageTextAC
-} from "../../redux/state";
+} from "../../redux/store";
+import {useDispatch} from "react-redux";
 
 type MassageDialogPropsType = {
     dialogDat: Array<dialogDatPropsType>,
     massageData: Array<massageDataPropsType>
     newMassageText: string
-    dispatch: (action: DispatchActionType)=>void
+    // dispatch: (action: DispatchActionType)=>void
 }
 
 export const Dialogs = (props: MassageDialogPropsType) => {
-
+    let dispatch=useDispatch();
     const newMassageElement = React.createRef<HTMLTextAreaElement>();
 
     const addMassage = () => {
         if (newMassageElement.current) {
-            props.dispatch(addMassageAC())
+            // props.dispatch(addMassageAC())
+            dispatch(addMassageAC())
         }
     }
 
     const onMessageChange = () => {
         if (newMassageElement.current) {
             let text = newMassageElement.current.value
-            props.dispatch(updateNewMassageTextAC(text))
+            // props.dispatch(updateNewMassageTextAC(text))
+            dispatch(updateNewMassageTextAC(text))
         }
     }
 
