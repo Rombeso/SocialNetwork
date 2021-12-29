@@ -1,9 +1,7 @@
 import {
-    addMassageAC,
     dialogDatPropsType,
     DispatchActionType,
-    massageDataPropsType,
-    massageMyPostPropsType, updateNewMassageTextAC
+    massageDataPropsType
 } from "./store";
 
 export type DialogStateType = {
@@ -39,10 +37,14 @@ const dialogsReducer = (state: DialogStateType = initialState, action: DispatchA
             }
             state.massageData.push(newMassage);
             state.newMassageText = ''
-            return state;
+            return {
+                ...state, newMassageText: '', massageData: [newMassage, ...state.massageData]
+            };
         case UPDATE_NEW_MASSAGE_TEXT:
             state.newMassageText = action.newMassage;
-            return state;
+            return {
+                ...state, newMassageText: action.newMassage
+            };
         default:
             return state
     }
@@ -52,4 +54,16 @@ const dialogsReducer = (state: DialogStateType = initialState, action: DispatchA
 export type AddMassageActionType = ReturnType<typeof addMassageAC>
 export type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
+export const addMassageAC = () => {
+    return {
+        type: ADD_MASSAGE
+    } as const
+}
+
+export const updateNewMassageTextAC = (newMassage: string) => {
+    return {
+        type: UPDATE_NEW_MASSAGE_TEXT,
+        newMassage: newMassage
+    } as const
+}
 export default dialogsReducer

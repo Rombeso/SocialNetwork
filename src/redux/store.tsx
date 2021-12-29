@@ -45,30 +45,9 @@ export type DispatchActionType = AddPostActionType |
     AddMassageActionType |
     UpdateNewMassageText
 
-export const addPostAC = () => {
-    return {
-        type: "ADD_POST"
-    } as const
-}
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: 'UPDATE_NEW_POST_TEXT',
-        newText: newText
-    } as const
-}
 
-export const addMassageAC = () => {
-    return {
-        type: 'ADD_MASSAGE'
-    } as const
-}
 
-export const updateNewMassageTextAC = (newMassage: string) => {
-    return {
-        type: 'UPDATE_NEW_MASSAGE_TEXT',
-        newMassage: newMassage
-    } as const
-}
+
 
 let store: StoreType = {
     _state: {

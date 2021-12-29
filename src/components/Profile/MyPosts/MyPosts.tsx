@@ -1,8 +1,9 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "../../../redux/store";
+import { DispatchActionType, massageMyPostPropsType} from "../../../redux/store";
 import {useDispatch} from "react-redux";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 // type MassageMyPostPropsType = {
 //     massage: string,
@@ -12,34 +13,34 @@ import {useDispatch} from "react-redux";
 
 type SomePT = {
     massageMyPost: Array<massageMyPostPropsType>
-    // addPost: () => void;
-    // updateNewPostText: (newText: string)=> void
     newPostText:string
     // dispatch: (action: DispatchActionType)=>void
+    updateNewPostText: (text:string) =>void
+    addPost:()=>void
 }
 
 export const MyPosts = (props: SomePT) => {
-    let dispatch=useDispatch();
+    // let dispatch=useDispatch();
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
+    const onAddPost = () => {
 
         if (newPostElement.current) {
-            // let text = newPostElement.current.value
-            // props.addPost()
+            //let text = newPostElement.current.value
+            props.addPost()
             // props.dispatch({type: "ADD_POST" })
             // props.dispatch(addPostAC())
-            dispatch(addPostAC())
+            //dispatch(addPostAC())
         }
     }
 
     let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            // props.updateNewPostText(text);
+            props.updateNewPostText(text);
             // props.dispatch({type: "UPDATE_NEW_POST_TEXT", newText: text })
             // props.dispatch(updateNewPostTextAC(text))
-            dispatch(updateNewPostTextAC(text))
+            // dispatch(updateNewPostTextAC(text))
         }
     }
 
@@ -54,7 +55,7 @@ export const MyPosts = (props: SomePT) => {
                     />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={classes.posts}>

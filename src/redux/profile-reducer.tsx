@@ -1,4 +1,4 @@
-import {addPostAC, DispatchActionType, massageMyPostPropsType, updateNewPostTextAC} from "./store";
+import { DispatchActionType, massageMyPostPropsType} from "./store";
 
 
 export type ProfileStateType = {
@@ -25,12 +25,12 @@ const profileReducer = (state: ProfileStateType = initialState, action: Dispatch
                 massage: state.newPostText,
                 likesCounter: '0'
             }
-            state.massageMyPost.push(newPost);
-            state.newPostText = ''
-            return state;
+            // state.massageMyPost.push(newPost);
+            // state.newPostText = ''
+            return {...state, newPostText: '', massageMyPost: [newPost, ...state.massageMyPost]};
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            // state.newPostText = action.newText;
+            return {...state, newPostText: action.newText};
         default:
             return state;
     }
@@ -39,7 +39,17 @@ const profileReducer = (state: ProfileStateType = initialState, action: Dispatch
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
-
+export const addPostAC = () => {
+    return {
+        type: ADD_POST
+    } as const
+}
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText
+    } as const
+}
 
 
 export default profileReducer

@@ -4,29 +4,30 @@ import classes from './Dialogs.module.css'
 import {Massage} from "./Massage/Massage";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {
-    addMassageAC,
     dialogDatPropsType,
-    DispatchActionType,
     massageDataPropsType,
-    updateNewMassageTextAC
 } from "../../redux/store";
 import {useDispatch} from "react-redux";
+import {addMassageAC, updateNewMassageTextAC} from "../../redux/dialogs-reducer";
 
 type MassageDialogPropsType = {
     dialogDat: Array<dialogDatPropsType>,
     massageData: Array<massageDataPropsType>
     newMassageText: string
     // dispatch: (action: DispatchActionType)=>void
+    addMassage: ()=>void
+    messageChange: (text:string)=>void
 }
 
 export const Dialogs = (props: MassageDialogPropsType) => {
     let dispatch=useDispatch();
     const newMassageElement = React.createRef<HTMLTextAreaElement>();
 
-    const addMassage = () => {
+    const onAddMassage = () => {
         if (newMassageElement.current) {
             // props.dispatch(addMassageAC())
-            dispatch(addMassageAC())
+            // dispatch(addMassageAC())
+            props.addMassage()
         }
     }
 
@@ -34,7 +35,8 @@ export const Dialogs = (props: MassageDialogPropsType) => {
         if (newMassageElement.current) {
             let text = newMassageElement.current.value
             // props.dispatch(updateNewMassageTextAC(text))
-            dispatch(updateNewMassageTextAC(text))
+            // dispatch(updateNewMassageTextAC(text))
+            props.messageChange(text)
         }
     }
 
@@ -47,7 +49,7 @@ export const Dialogs = (props: MassageDialogPropsType) => {
                 <Massage massageData={props.massageData} />
                 <div>
                     <textarea onChange={onMessageChange} ref={newMassageElement} value={props.newMassageText}></textarea>
-                    <button onClick={addMassage}>Add massage</button>
+                    <button onClick={onAddMassage}>Add massage</button>
                 </div>
             </div>
         </div>
