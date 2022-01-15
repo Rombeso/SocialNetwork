@@ -8,6 +8,8 @@ import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 type AppPropsType = {
@@ -31,28 +33,18 @@ const App: React.FC<AppPropsType> = (props) => {
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     {/* eslint-disable-next-line react/jsx-no-undef */}
-                    <Route path='/dialogs' render={() => <DialogsContainer
-                        // dialogDat={props.appState.dialogPage.dialogDat}
-                        // massageData={props.appState.dialogPage.massageData}
-                        // newMassageText={props.newMassageText}
-                        // dialogDat={dialogPage.dialogDat}
-                        // massageData={dialogPage.massageData}
-                        // newMassageText={dialogPage.newMassageText}
-                        // dispatch={props.store.dispatch.bind(props.store)}
-                        // dispatch={dispatch(addMassageAC()}
-                    />}/>
-                    <Route path='/profile' render={() => <Profile
-                        // massageMyPost={profilePage.massageMyPost}
-                        // newPostText={profilePage.newPostText}
-                        // addPost={props.addPost.bind(props.store)}
-                        // updateNewPostText={props.updateNewPostText.bind(props.store)}
-                        // newPostText={props.newPostText}
-                        // dispatch={props.store.dispatch.bind(props.store)}
-                    />}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-
+                    <Route path='/dialogs'
+                           render={() => <DialogsContainer/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile/>}/>
+                    <Route path='/music'
+                           render={() => <Music/>}/>
+                    <Route path='/news'
+                           render={() => <News/>}/>
+                    <Route path='/settings'
+                           render={() => <Settings/>}/>
+                    <Route path='/users'
+                           render={() => <UsersContainer />}/>
                 </div>
             </div>
         </BrowserRouter>

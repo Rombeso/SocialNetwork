@@ -20,7 +20,7 @@ type MassageDialogPropsType = {
 }
 
 export const Dialogs = (props: MassageDialogPropsType) => {
-    let dispatch=useDispatch();
+    // let dispatch=useDispatch();
     const newMassageElement = React.createRef<HTMLTextAreaElement>();
 
     const onAddMassage = () => {
