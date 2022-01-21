@@ -3,6 +3,7 @@ export type ProfileStateType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
+    isFetching: boolean,
 }
 
 export type usersType = {
@@ -23,6 +24,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURREN_PAGE = 'SET_CURREN_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 let initialState: ProfileStateType = {
@@ -30,6 +32,7 @@ let initialState: ProfileStateType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 2,
+    isFetching: true,
 
 }
 
@@ -59,13 +62,22 @@ const usersReducer = (state: ProfileStateType = initialState, action: ActionType
             return {
                 ...state, totalUsersCount: action.payload.totalUsersCount
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state, isFetching: action.payload.isFetching
+            }
         default:
             return state;
     }
 
 }
 
-export type ActionType = FollowActionType | UnfollowActionType | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
+export type ActionType = FollowActionType
+    | UnfollowActionType
+    | SetUsersActionType
+    | SetCurrentPageType
+    | SetTotalUsersCountType
+    | SetIsFetchingType
 
 
 export type FollowActionType = ReturnType<typeof followAC>
@@ -103,6 +115,14 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         payload: {totalUsersCount,}
+    } as const
+
+}
+export type SetIsFetchingType = ReturnType<typeof setIsFetchingAC>
+export const setIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        payload: {isFetching,}
     } as const
 }
 
