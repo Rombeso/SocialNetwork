@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/pngwing.com.png";
-import {UsersPropsType} from "./UsersContainer";
 import {usersType} from "../../redux/users-reducer";
+import { NavLink } from "react-router-dom";
 
 type PropsType = {
-    onPageChanged: (p: number)=>void
+    onPageChanged: (p: number) => void
     users: Array<usersType>
     pageSize: number
     totalUsersCount: number
@@ -17,22 +17,19 @@ type PropsType = {
 export const Users = (props: PropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for ( let i= (props.currentPage < 6 ? 1 : props.currentPage - 5); i <= props.currentPage + 5 && i < pagesCount; i++) {
+    for (let i = (props.currentPage < 6 ? 1 : props.currentPage - 5); i <= props.currentPage + 5 && i < pagesCount; i++) {
         pages.push(i)
     }
-    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    // let pages = [];
-    // for ( let i=1; i <= pagesCount; i++) {
-    //     pages.push(i)
-    // }
     return (
         <div>
             <div>
                 {pages.map(p => {
                     return (
-                        <span className={props.currentPage === p ? styles.selectedPage + ' ' +styles.page : styles.page} onClick={(e) => {
-                            props.onPageChanged(p);
-                        }}>{p}</span>
+                        <span
+                            className={props.currentPage === p ? styles.selectedPage + ' ' + styles.page : styles.page}
+                            onClick={(e) => {
+                                props.onPageChanged(p);
+                            }}>{p}</span>
                     )
                 })}
             </div>
@@ -40,7 +37,9 @@ export const Users = (props: PropsType) => {
                 props.users.map(u => <div key={u.id}>
     <span>
         <div>
+            <NavLink to={'/profile/' + u.id} >
             <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.usersPhoto}/>
+            </NavLink>
         </div>
         <div>
             {u.followed
