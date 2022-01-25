@@ -24,7 +24,6 @@ type CommonType = RouteComponentProps<PathParamsType> & OwnPropsType
 class ProfileContainer extends React.Component<CommonType> {
 
     componentDidMount() {
-        debugger
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = '2';
