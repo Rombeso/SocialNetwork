@@ -1,4 +1,6 @@
 import {DispatchActionType, massageMyPostPropsType} from "./store";
+import {userAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 export type ProfileType = {
     aboutMe: string
@@ -68,6 +70,14 @@ export const setUserProfile = (profile: ProfileType) => {
         type: SET_USER_PROFILE,
         payload: {profile}
     } as const
+}
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch<ActionType>) => {
+    return userAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+
+        })
+
 }
 
 
