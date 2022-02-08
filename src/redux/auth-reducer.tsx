@@ -4,9 +4,9 @@ import {Dispatch} from "redux";
 export type AuthType = {
     resultCode: number | null
     messages: []
-    data: DataType
+    data: AuthDataType
 }
-export type DataType = {
+export type AuthDataType = {
     userId: number | null
     email: string
     login: string
@@ -16,15 +16,14 @@ export type DataType = {
 const SET_USER_DATA = 'SET_USER_DATA';
 
 
-let initialState: DataType = {
+let initialState: AuthDataType = {
     userId: null,
     email: '',
     login: '',
     isAuth: false,
-
 }
 
-const authReducer = (state: DataType = initialState, action: ActionType): DataType => {
+const authReducer = (state: AuthDataType = initialState, action: ActionType): AuthDataType => {
 
     switch (action.type) {
 
@@ -38,7 +37,6 @@ const authReducer = (state: DataType = initialState, action: ActionType): DataTy
         default:
             return state;
     }
-
 }
 
 export type ActionType = SetUserDataActionType

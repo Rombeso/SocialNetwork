@@ -11,6 +11,7 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/header/headerContainer";
+import {Login} from "./components/Login/Login";
 
 
 type AppPropsType = {
@@ -36,7 +37,7 @@ const App: React.FC<AppPropsType> = (props) => {
                     {/* eslint-disable-next-line react/jsx-no-undef */}
                     <Route path='/dialogs'
                            render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userId'
+                    <Route path='/profile/:userId?'
                            render={() => <ProfileContainer/>}/>
                     <Route path='/music'
                            render={() => <Music/>}/>
@@ -46,6 +47,8 @@ const App: React.FC<AppPropsType> = (props) => {
                            render={() => <Settings/>}/>
                     <Route path='/users'
                            render={() => <UsersContainer />}/>
+                    <Route path='/login'
+                           render={() => <Login />}/>
                 </div>
             </div>
         </BrowserRouter>

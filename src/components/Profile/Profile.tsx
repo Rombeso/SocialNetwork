@@ -15,9 +15,6 @@ export const Profile = (props: MassageMyPostPropsType) => {
         <div>
             <ProfileInfo profile={props.profile}/>
             <MyPostsContainer
-                // massageMyPost={props.massageMyPost}
-                //      newPostText={props.newPostText}
-                     // dispatch={props.dispatch}
             />
         </div>)
 }

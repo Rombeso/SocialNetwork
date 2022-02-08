@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import classes from './Dialogs.module.css'
 import {Massage} from "./Massage/Massage";
 import {DialogItem} from "./DialogItem/DialogItem";
@@ -15,8 +15,9 @@ type MassageDialogPropsType = {
     massageData: Array<massageDataPropsType>
     newMassageText: string
     // dispatch: (action: DispatchActionType)=>void
-    addMassage: ()=>void
-    messageChange: (text:string)=>void
+    addMassage: () => void
+    messageChange: (text: string) => void
+    isAuth: boolean
 }
 
 export const Dialogs = (props: MassageDialogPropsType) => {
@@ -25,8 +26,6 @@ export const Dialogs = (props: MassageDialogPropsType) => {
 
     const onAddMassage = () => {
         if (newMassageElement.current) {
-            // props.dispatch(addMassageAC())
-            // dispatch(addMassageAC())
             props.addMassage()
         }
     }
@@ -34,26 +33,27 @@ export const Dialogs = (props: MassageDialogPropsType) => {
     const onMessageChange = () => {
         if (newMassageElement.current) {
             let text = newMassageElement.current.value
-            // props.dispatch(updateNewMassageTextAC(text))
-            // dispatch(updateNewMassageTextAC(text))
             props.messageChange(text)
         }
     }
 
-    return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
-                <DialogItem dialogDat={props.dialogDat} />
-            </div>
-            <div className={classes.massages}>
-                <Massage massageData={props.massageData} />
-                <div>
-                    <textarea onChange={onMessageChange} ref={newMassageElement} value={props.newMassageText}></textarea>
-                    <button onClick={onAddMassage}>Add massage</button>
+    if (!props.isAuth) return <Redirect to={'/Login'} />
+
+        return (
+            <div className={classes.dialogs}>
+                <div className={classes.dialogsItems}>
+                    <DialogItem dialogDat={props.dialogDat}/>
+                </div>
+                <div className={classes.massages}>
+                    <Massage massageData={props.massageData}/>
+                    <div>
+                        <textarea onChange={onMessageChange} ref={newMassageElement}
+                                  value={props.newMassageText}></textarea>
+                        <button onClick={onAddMassage}>Add massage</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    )
+        )
 
 }
