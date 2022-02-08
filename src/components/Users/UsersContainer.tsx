@@ -83,19 +83,6 @@ const mapStateToProps = (state: ReducerType): MapStateType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
- // let withRedirect = withAuthRedirect(UsersContainer)
-
-// export default connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setUsers,
-//     setCurrentPage,
-//     setTotalUsersCount,
-//     toggleIsFetching,
-//     toggleFollowingInProgress,
-//     getUsersThunkCreator,
-//     onPageChangedThunkCreator,
-// })(withRedirect);
 
 export default compose<React.ComponentType>(
     withAuthRedirect,

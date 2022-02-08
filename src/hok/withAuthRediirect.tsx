@@ -4,7 +4,11 @@ import {ReducerType} from "../redux/redux-store";
 import {connect} from "react-redux";
 import {MapStateType} from "../components/Profile/ProfileContainer";
 
-const mapStateToPropsForRedirect = (state: ReducerType): MapStateType => {
+type AuthStateType = {
+    isAuth: boolean
+}
+
+const mapStateToPropsForRedirect = (state: ReducerType): AuthStateType => {
     return {
         isAuth: state.auth.isAuth
     }

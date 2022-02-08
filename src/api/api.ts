@@ -20,11 +20,24 @@ export const userAPI = {
         return instanseAxios.delete(`follow/${userId}`)
     },
     getProfile(userId: string) {
-        return instanseAxios.get(`profile/${userId}`)
+        console.warn('Obsolete method. Please use profileIPA object')
+        return profileAPI.getProfile(userId)
     }
 }
 export const authAPI = {
     me() {
         return instanseAxios.get(`auth/me`)
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instanseAxios.get(`profile/${userId}`)
+    },
+    getStatus(userId: string) {
+        return instanseAxios.get(`profile/status/${userId}`)
+    },
+    updateStatus(status: string) {
+        return instanseAxios.put(`profile/status`, {status: status})
     }
 }
