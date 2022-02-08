@@ -15,6 +15,7 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../hok/withAuthRediirect";
+import {compose} from "redux";
 
 type MapStateType = {
     users: Array<usersType>
@@ -82,10 +83,23 @@ const mapStateToProps = (state: ReducerType): MapStateType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
+ // let withRedirect = withAuthRedirect(UsersContainer)
 
-let withRedirect = withAuthRedirect(UsersContainer)
+// export default connect(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setUsers,
+//     setCurrentPage,
+//     setTotalUsersCount,
+//     toggleIsFetching,
+//     toggleFollowingInProgress,
+//     getUsersThunkCreator,
+//     onPageChangedThunkCreator,
+// })(withRedirect);
 
-export default connect(mapStateToProps, {
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+connect(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
@@ -95,4 +109,5 @@ export default connect(mapStateToProps, {
     toggleFollowingInProgress,
     getUsersThunkCreator,
     onPageChangedThunkCreator,
-})(withRedirect);
+})
+)(UsersContainer)

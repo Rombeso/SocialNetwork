@@ -13,28 +13,16 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/header/headerContainer";
 import {Login} from "./components/Login/Login";
 
-
 type AppPropsType = {
-    // appState: statePropsType
-    // addPost: ()=>void
-    // updateNewPostText: (newText: string)=> void
-    // newPostText:string
-    // newMassageText:string
-    // store: StoreType
 }
 
-
-const App: React.FC<AppPropsType> = (props) => {
-    // let profilePage =  useSelector<ReducerType, ProfileStateType>(state => state.profilePage)
-    // let dialogPage =  useSelector<ReducerType, DialogStateType>(state => state.dialogPage)
-    // const state = props.store.getState()
+const App: React.FC<AppPropsType> = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    {/* eslint-disable-next-line react/jsx-no-undef */}
                     <Route path='/dialogs'
                            render={() => <DialogsContainer/>}/>
                     <Route path='/profile/:userId?'
