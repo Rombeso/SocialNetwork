@@ -37,7 +37,7 @@ export const Dialogs = (props: MassageDialogPropsType) => {
         }
     }
 
-    if (!props.isAuth) return <Redirect to={'/Login'} />
+    // if (!props.isAuth) return <Redirect to={'/Login'} />
 
         return (
             <div className={classes.dialogs}>

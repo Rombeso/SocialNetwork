@@ -4,6 +4,7 @@ import {addMassageAC, DialogStateType, updateNewMassageTextAC} from "../../redux
 import {Dialogs} from "./Dialogs";
 import {ReducerType} from "../../redux/redux-store";
 import {AuthDataType} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
 type MassageDialogPropsType = {
 }
@@ -23,12 +24,17 @@ export const DialogsContainer = (props: MassageDialogPropsType) => {
             dispatch(updateNewMassageTextAC(text))
     }
 
-    return (<Dialogs addMassage={addMassage}
-                     messageChange={messageChange}
-                     dialogDat={dialogPage.dialogDat}
-                     massageData={dialogPage.massageData}
-                     newMassageText={dialogPage.newMassageText}
-    isAuth={isAuth.isAuth}
-    />)
+    const AuthRedirectComponent = () => {
+        if (!isAuth.isAuth) return <Redirect to={'/login'}/>
+        return(<Dialogs addMassage={addMassage}
+                        messageChange={messageChange}
+                        dialogDat={dialogPage.dialogDat}
+                        massageData={dialogPage.massageData}
+                        newMassageText={dialogPage.newMassageText}
+                        isAuth={isAuth.isAuth}
+        />)
+    }
+
+    return <AuthRedirectComponent />
 
 }

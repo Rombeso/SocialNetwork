@@ -14,6 +14,7 @@ import {
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hok/withAuthRediirect";
 
 type MapStateType = {
     users: Array<usersType>
@@ -82,30 +83,7 @@ const mapStateToProps = (state: ReducerType): MapStateType => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchType => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users: Array<usersType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalUsersCount: (totalUsersCount: number) => {
-//             dispatch(setTotalUsersCountAC(totalUsersCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(setIsFetchingAC(isFetching))
-//         },
-//
-//
-//     }
-// }
+let withRedirect = withAuthRedirect(UsersContainer)
 
 export default connect(mapStateToProps, {
     follow,
@@ -117,4 +95,4 @@ export default connect(mapStateToProps, {
     toggleFollowingInProgress,
     getUsersThunkCreator,
     onPageChangedThunkCreator,
-})(UsersContainer);
+})(withRedirect);
