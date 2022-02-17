@@ -35,12 +35,14 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
         case ADD_POST:
             let newPost: massageMyPostPropsType = {
                 id: '5',
-                massage: state.newPostText,
+                massage: action.newPostText,
                 likesCounter: '0'
             }
-            return {...state, newPostText: '', massageMyPost: [newPost, ...state.massageMyPost]};
-        case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.newText};
+            state.massageMyPost.push(newPost);
+            return {...state, massageMyPost: [...state.massageMyPost]};
+            // return {...state, newPostText: '', massageMyPost: [newPost, ...state.massageMyPost]};
+        // case UPDATE_NEW_POST_TEXT:
+        //     return {...state, newPostText: action.newText};
         case SET_STATUS:
             return {...state, status: action.payload.status};
 
@@ -53,22 +55,24 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
 
 }
 
-type ActionType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileActionType | SetStatusActionType
+type ActionType = AddPostActionType | SetUserProfileActionType | SetStatusActionType
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
-export const addPostAC = () => {
+export const addPostAC = (newPostText: string) => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPostText: newPostText,
+
     } as const
 }
-export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
+// export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+// export const updateNewPostTextAC = (newText: string) => {
+//     return {
+//         type: UPDATE_NEW_POST_TEXT,
+//         newText: newText
+//     } as const
+// }
 
 export type SetUserProfileActionType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: ProfileType) => {

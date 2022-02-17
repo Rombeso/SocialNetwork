@@ -1,5 +1,5 @@
-import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
-import dialogsReducer, {AddMassageActionType, UpdateNewMassageText} from "./dialogs-reducer";
+import  {AddPostActionType} from "./profile-reducer";
+import  {AddMassageActionType} from "./dialogs-reducer";
 
 export type massageMyPostPropsType = {
     id?: string,
@@ -40,14 +40,13 @@ export type StoreType = {
     getState: () => statePropsType
     dispatch: (action: DispatchActionType) => void
 }
-export type DispatchActionType = AddPostActionType |
-    UpdateNewPostTextActionType |
-    AddMassageActionType |
-    UpdateNewMassageText
+export type DispatchActionType = AddPostActionType | AddMassageActionType
 
 
 let store = {
+}
 
+export default store
 
 // let store: StoreType = {
 //     _state: {
@@ -87,6 +86,4 @@ let store = {
 //         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
 //         this._rerenderEntireTree(this._state);
 //     }
-}
 
-export default store

@@ -7,10 +7,9 @@ import {
 export type DialogStateType = {
     dialogDat: Array<dialogDatPropsType>
     massageData: Array<massageDataPropsType>
-    newMassageText: string
 }
 const ADD_MASSAGE = 'ADD_MASSAGE'
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEXT'
+// const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEXT'
 
 let initialState = {
     dialogDat: [
@@ -23,8 +22,7 @@ let initialState = {
         {massage: "Hello, how are you?", id: "1"},
         {massage: "I'm fine, and you?", id: '2'},
         {massage: "I'am ok. Today is bad wather.", id: '3'}
-    ],
-    newMassageText: 'it-incubator'
+    ]
 }
 
 
@@ -32,19 +30,19 @@ const dialogsReducer = (state: DialogStateType = initialState, action: DispatchA
     switch (action.type) {
         case ADD_MASSAGE:
             let newMassage: massageDataPropsType = {
-                massage: state.newMassageText,
+                massage: action.newMassageText,
                 id: "4"
             }
             state.massageData.push(newMassage);
-            state.newMassageText = ''
             return {
-                ...state, newMassageText: '', massageData: [newMassage, ...state.massageData]
+                ...state, massageData: [...state.massageData]
+                // ...state, newMassageText: '', massageData: [...state.massageData, newMassage]
             };
-        case UPDATE_NEW_MASSAGE_TEXT:
-            state.newMassageText = action.newMassage;
-            return {
-                ...state, newMassageText: action.newMassage
-            };
+        // case UPDATE_NEW_MASSAGE_TEXT:
+        //     // state.newMassageText = action.newMassage;
+        //     return {
+        //         ...state, newMassageText: action.newMassage
+        //     };
         default:
             return state
     }
@@ -52,18 +50,19 @@ const dialogsReducer = (state: DialogStateType = initialState, action: DispatchA
 
 }
 export type AddMassageActionType = ReturnType<typeof addMassageAC>
-export type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
+// export type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
-export const addMassageAC = () => {
+export const addMassageAC = (newMassageText: string) => {
     return {
-        type: ADD_MASSAGE
+        type: ADD_MASSAGE,
+        newMassageText: newMassageText
     } as const
 }
 
-export const updateNewMassageTextAC = (newMassage: string) => {
-    return {
-        type: UPDATE_NEW_MASSAGE_TEXT,
-        newMassage: newMassage
-    } as const
-}
+// export const updateNewMassageTextAC = (newMassage: string) => {
+//     return {
+//         type: UPDATE_NEW_MASSAGE_TEXT,
+//         newMassage: newMassage
+//     } as const
+// }
 export default dialogsReducer
