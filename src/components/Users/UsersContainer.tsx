@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ReducerType} from "../../redux/redux-store";
+import {ReducerRootType} from "../../redux/redux-store";
 import {
     setCurrentPage,
     toggleIsFetching,
@@ -73,7 +73,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 }
 
-const mapStateToProps = (state: ReducerType): MapStateType => {
+const mapStateToProps = (state: ReducerRootType): MapStateType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

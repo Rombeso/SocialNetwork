@@ -11,10 +11,10 @@ let reducers = combineReducers({
     dialogPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
 });
 
-export type ReducerType = ReturnType<typeof reducers>
+export type ReducerRootType = ReturnType<typeof reducers>
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 

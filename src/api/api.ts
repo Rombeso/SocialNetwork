@@ -27,7 +27,13 @@ export const userAPI = {
 export const authAPI = {
     me() {
         return instanseAxios.get(`auth/me`)
-    }
+    },
+    login(email:string, password:string, rememberMe: boolean = false) {
+        return instanseAxios.post(`auth/login`, {email, password, rememberMe})
+    },
+    logout() {
+        return instanseAxios.delete(`auth/login`)
+    },
 }
 
 export const profileAPI = {

@@ -3,12 +3,12 @@ import {DispatchActionType, massageMyPostPropsType} from "../../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {addPostAC, ProfileStateType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
-import {ReducerType} from "../../../redux/redux-store";
+import {ReducerRootType} from "../../../redux/redux-store";
 
 type SomePT = {}
 
 export const MyPostsContainer = (props: SomePT) => {
-    let profilePage = useSelector<ReducerType, ProfileStateType>(state => state.profilePage)
+    let profilePage = useSelector<ReducerRootType, ProfileStateType>(state => state.profilePage)
     let dispatch = useDispatch();
 
     const addPost = (newPostText: string) => {

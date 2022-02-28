@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addMassageAC, DialogStateType} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
-import {ReducerType} from "../../redux/redux-store";
+import {ReducerRootType} from "../../redux/redux-store";
 import {AuthDataType} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 
@@ -10,8 +10,8 @@ type MassageDialogPropsType = {
 }
 
 export const DialogsContainer = (props: MassageDialogPropsType) => {
-    let dialogPage =  useSelector<ReducerType, DialogStateType>(state => state.dialogPage)
-    let isAuth = useSelector<ReducerType, AuthDataType>(state => state.auth)
+    let dialogPage =  useSelector<ReducerRootType, DialogStateType>(state => state.dialogPage)
+    let isAuth = useSelector<ReducerRootType, AuthDataType>(state => state.auth)
     let dispatch=useDispatch();
 
     // const newMassageElement = React.createRef<HTMLTextAreaElement>();
