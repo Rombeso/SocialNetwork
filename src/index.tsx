@@ -7,6 +7,7 @@ import App from './App';
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {StoreType} from "./redux/store";
+import { BrowserRouter } from 'react-router-dom';
 
 
 // let rerenderEntireTree = (state: StoreType) => {
@@ -14,16 +15,11 @@ import {StoreType} from "./redux/store";
 
     ReactDOM.render(
         <React.StrictMode>
+            <BrowserRouter>
            <Provider store={store}>
-            <App
-                // appState={store.getState()}
-                // addPost={store.addPost}
-                // updateNewPostText={store.updateNewPostText}
-                // newPostText={store._state.profilePage.newPostText}
-                // newMassageText={store._state.dialogPage.newMassageText}
-                // store={store}
-            />
+            <App/>
            </Provider>
+                </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     )

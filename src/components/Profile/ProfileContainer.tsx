@@ -3,8 +3,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {ReducerRootType} from "../../redux/redux-store";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../hok/withAuthRediirect";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 
 type PathParamsType = {
@@ -33,6 +32,9 @@ class ProfileContainer extends React.Component<CommonType> {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.autorizedUserId !== null ? String(this.props.autorizedUserId) : '';
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
