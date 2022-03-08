@@ -15,6 +15,7 @@ export type ProfileStateType = {
     status: string,
 }
 const ADD_POST = 'ADD_POST'
+const DELETE_POST = 'DELETE_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
@@ -48,14 +49,15 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
 
         case SET_USER_PROFILE:
             return {...state, profile: {...action.payload.profile}};
-
+        case DELETE_POST:
+            return {...state, massageMyPost: state.massageMyPost.filter(p => p.id != action.postId)};
         default:
             return state;
     }
 
 }
 
-type ActionType = AddPostActionType | SetUserProfileActionType | SetStatusActionType
+type ActionType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionType
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
@@ -63,6 +65,15 @@ export const addPostAC = (newPostText: string) => {
     return {
         type: ADD_POST,
         newPostText: newPostText,
+
+    } as const
+}
+
+export type DeletePostActionType = ReturnType<typeof deletePostAC>
+export const deletePostAC = (postId: string) => {
+    return {
+        type: DELETE_POST,
+        postId: postId,
 
     } as const
 }
