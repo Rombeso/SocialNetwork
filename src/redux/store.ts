@@ -43,10 +43,10 @@ export type StoreType = {
 export type DispatchActionType = AddPostActionType | AddMassageActionType
 
 
-let store = {
-}
-
-export default store
+// let store = {
+// }
+//
+// export default store
 
 // let store: StoreType = {
 //     _state: {

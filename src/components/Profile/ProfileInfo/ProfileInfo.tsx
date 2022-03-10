@@ -11,8 +11,8 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-export const ProfileInfo = (props: PropsType) => {
-     if (!props.profile) {
+export const ProfileInfo = ({profile, updateStatus, status}: PropsType) => {
+     if (!profile) {
          return <Preloader/>
      }
     return (
@@ -21,10 +21,10 @@ export const ProfileInfo = (props: PropsType) => {
             <img className={classes.image} src='https://myrzik.com/wp-content/uploads/2012/11/0585.jpg'></img>
         </div>
         <div className={classes.descriptionBlock}>
-            <img src={props.profile.photos.large} alt=""/>
-            <ProfileStatusWithHooks status={props.status}  updateStatus={props.updateStatus}/>
-            <p>{'Full name: ' +  props.profile.fullName}</p>
-            <p>{'About me: ' +  props.profile.aboutMe}</p>
+            <img src={profile.photos.large} alt=""/>
+            <ProfileStatusWithHooks status={status}  updateStatus={updateStatus}/>
+            <p>{'Full name: ' +  profile.fullName}</p>
+            <p>{'About me: ' +  profile.aboutMe}</p>
         </div>
     </div>
     )

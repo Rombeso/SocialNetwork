@@ -31,7 +31,6 @@ type MapStateType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: Array<any>,
-
 }
 
 type MapDispatchType = {
@@ -44,24 +43,22 @@ type MapDispatchType = {
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
     getUsersThunkCreator:(currentPage: number, pageSize: number) => void
     onPageChangedThunkCreator:(pageNumber: number, pageSize: number) => void
-
 }
 
 export type UsersPropsType = MapStateType & MapDispatchType
 
 class UsersContainer extends React.Component<UsersPropsType> {
-
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersThunkCreator(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.onPageChangedThunkCreator(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.onPageChangedThunkCreator(pageNumber, pageSize)
     }
 
     render() {
-
-
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -79,17 +76,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
         </>
     }
 }
-
-// const mapStateToProps = (state: ReducerRootType): MapStateType => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 
 const mapStateToProps = (state: ReducerRootType): MapStateType => {
     return {

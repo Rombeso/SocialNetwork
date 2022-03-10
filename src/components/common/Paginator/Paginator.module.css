@@ -1,0 +1,15 @@
+.usersPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.selectedPage {
+    font-size: large;
+    font-weight: bold;
+}
+
+.page {
+    margin: 5px;
+    cursor: pointer;
+}

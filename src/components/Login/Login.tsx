@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from 'redux-form'
-import {Input} from "../common/FormsControls/FormsControls";
+import {createField, Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -14,26 +14,30 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error,...props}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'Email'} name={'email'} component={Input}
-                       validate={[required]}
-                />
-            </div>
-            <div>
-                <Field placeholder={'Password'} name={'password'} component={Input} type={'password'}
-                       validate={[required]}
-                />
-            </div>
-            <div>
-                <Field component={Input} name={'rememberMe'} type="checkbox"
-                /> remember me
-            </div>
-            {props.error && <div className={style.formSummeryError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', Input, [required])}
+            {createField('Password', 'password', Input, [required], {type: 'password'})}
+            {createField(null, 'rememberMe', Input, [], {type: 'checkbox'}, 'remember me')}
+
+            {/*<div>*/}
+            {/*    <Field placeholder={'Email'} name={'email'} component={Input}*/}
+            {/*           validate={[required]}*/}
+            {/*    />*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <Field placeholder={'Password'} name={'password'} component={Input} type={'password'}*/}
+            {/*           validate={[required]}*/}
+            {/*    />*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <Field component={Input} name={'rememberMe'} type="checkbox"*/}
+            {/*    /> remember me*/}
+            {/*</div>*/}
+            {error && <div className={style.formSummeryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>

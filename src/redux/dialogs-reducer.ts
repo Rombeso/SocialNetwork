@@ -4,12 +4,7 @@ import {
     massageDataPropsType
 } from "./store";
 
-export type DialogStateType = {
-    dialogDat: Array<dialogDatPropsType>
-    massageData: Array<massageDataPropsType>
-}
 const ADD_MASSAGE = 'ADD_MASSAGE'
-// const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEXT'
 
 let initialState = {
     dialogDat: [
@@ -25,7 +20,6 @@ let initialState = {
     ]
 }
 
-
 const dialogsReducer = (state: DialogStateType = initialState, action: DispatchActionType) => {
     switch (action.type) {
         case ADD_MASSAGE:
@@ -38,19 +32,12 @@ const dialogsReducer = (state: DialogStateType = initialState, action: DispatchA
                 ...state, massageData: [...state.massageData]
                 // ...state, newMassageText: '', massageData: [...state.massageData, newMassage]
             };
-        // case UPDATE_NEW_MASSAGE_TEXT:
-        //     // state.newMassageText = action.newMassage;
-        //     return {
-        //         ...state, newMassageText: action.newMassage
-        //     };
         default:
             return state
     }
 
 
 }
-export type AddMassageActionType = ReturnType<typeof addMassageAC>
-// export type UpdateNewMassageText = ReturnType<typeof updateNewMassageTextAC>
 
 export const addMassageAC = (newMassageText: string) => {
     return {
@@ -59,10 +46,10 @@ export const addMassageAC = (newMassageText: string) => {
     } as const
 }
 
-// export const updateNewMassageTextAC = (newMassage: string) => {
-//     return {
-//         type: UPDATE_NEW_MASSAGE_TEXT,
-//         newMassage: newMassage
-//     } as const
-// }
+export type DialogStateType = {
+    dialogDat: Array<dialogDatPropsType>
+    massageData: Array<massageDataPropsType>
+}
+export type AddMassageActionType = ReturnType<typeof addMassageAC>
+
 export default dialogsReducer

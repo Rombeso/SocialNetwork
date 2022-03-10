@@ -14,7 +14,6 @@ let reducers = combineReducers({
     auth: authReducer,
     app: appReducer,
     form: formReducer,
-
 });
 
 export type ReducerRootType = ReturnType<typeof reducers>

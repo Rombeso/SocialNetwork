@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {NavBar} from './components/Navbar/Navbar';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
@@ -22,11 +22,9 @@ type AppPropsType = {
 }
 
 class App extends React.Component<AppPropsType> {
-
     componentDidMount() {
         this.props.initializeApp();
     }
-
     render() {
         if(!this.props.initialized) {
             return <Preloader />
