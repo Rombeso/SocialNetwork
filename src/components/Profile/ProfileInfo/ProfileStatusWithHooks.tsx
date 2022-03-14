@@ -1,7 +1,7 @@
 import React, {HTMLInputTypeAttribute, useEffect, useState} from "react";
 import classes from './ProfileInfo.module.css'
 
-type PropsType = {
+export type PropsType = {
     status: string
     updateStatus: (status: string) => void
 }
@@ -21,6 +21,8 @@ useEffect(()=>{
 
     const deactivateEditMode = () => {
         setEditMode(false)
+            props.updateStatus(status)
+
     }
 
     const onStatusChange = (e: any) => {
@@ -31,12 +33,12 @@ useEffect(()=>{
         <div>
             { !editMode &&
             <div>
-                <span onDoubleClick={activeEditMode}>{props.status || "Enter your status"}</span>
+                <span  data-testid="status" onDoubleClick={activeEditMode}>{props.status || "Enter your status"}</span>
             </div>
             }
             {editMode &&
             <div>
-                <input
+                <input data-testid="status-input"
                     autoFocus={true}
                     onBlur={deactivateEditMode}
                     onChange={onStatusChange}
