@@ -28,10 +28,11 @@ export const Users = ({
                           toggleFollowingInProgress,
                           ...props
                       }: PropsType) => {
+    let portionSize = 10
     return (
         <div>
-            <Paginator onPageChanged={onPageChanged} pageSize={pageSize} totalUsersCount={totalUsersCount}
-                       currentPage={currentPage}/>
+            <Paginator onPageChanged={onPageChanged} pageSize={pageSize} totalItemsCount={totalUsersCount}
+                          currentPage={currentPage} portionSize={portionSize}/>
             <div>
                 {
                     users.map(u => <User user={u} key={u.id} follow={follow} unfollow={unfollow}

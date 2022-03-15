@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 type MassageDialogPropsType = {
 }
 
-export const DialogsContainer = (props: MassageDialogPropsType) => {
+const DialogsContainer = (props: MassageDialogPropsType) => {
     let dialogPage =  useSelector<ReducerRootType, DialogStateType>(state => state.dialogPage)
     let isAuth = useSelector<ReducerRootType, AuthDataType>(state => state.auth)
     let dispatch=useDispatch();
@@ -38,3 +38,5 @@ export const DialogsContainer = (props: MassageDialogPropsType) => {
     return <AuthRedirectComponent />
 
 }
+
+export default DialogsContainer
