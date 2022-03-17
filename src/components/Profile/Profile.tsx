@@ -8,6 +8,8 @@ type MassageMyPostPropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: File)=>void
 }
 
 
@@ -18,6 +20,8 @@ export const Profile = (props: MassageMyPostPropsType) => {
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
+                         isOwner={props.isOwner}
+                         savePhoto={props.savePhoto}
             />
             <MyPostsContainer
             />
