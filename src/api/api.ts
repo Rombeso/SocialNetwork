@@ -1,4 +1,5 @@
 import axios from "axios";
+import {FormProfileDataType} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 const instanseAxios = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -54,5 +55,8 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    saveProfile(profile: FormProfileDataType){
+        return instanseAxios.put(`profile`, profile)
     }
 }

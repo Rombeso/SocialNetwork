@@ -3,6 +3,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileStateType, ProfileType} from "../../redux/profile-reducer";
+import {FormProfileDataType} from "./ProfileInfo/ProfileDataForm";
 
 type MassageMyPostPropsType = {
     profile: ProfileType
@@ -10,6 +11,8 @@ type MassageMyPostPropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File)=>void
+    saveProfile: (profile: FormProfileDataType)=>void
+
 }
 
 
@@ -22,6 +25,8 @@ export const Profile = (props: MassageMyPostPropsType) => {
                          updateStatus={props.updateStatus}
                          isOwner={props.isOwner}
                          savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}
+
             />
             <MyPostsContainer
             />

@@ -5,3 +5,7 @@
 .image {
     width: 100%;
 }
+
+.contacts div {
+   padding-left: 10px;
+}

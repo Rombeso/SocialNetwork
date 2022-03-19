@@ -1,6 +1,7 @@
 import {massageMyPostPropsType} from "./store";
 import {profileAPI, userAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {FormProfileDataType} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
@@ -32,7 +33,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
             return {...state, status: action.payload.status};
 
         case SET_USER_PROFILE:
-            return {...state, profile: {...action.payload.profile}};
+            return {...state, profile: action.payload.profile};
         case DELETE_POST:
             return {...state, massageMyPost: state.massageMyPost.filter(p => p.id != action.postId)};
 
@@ -78,6 +79,7 @@ export const savePhotoSuccess = (photo: File) => {
 
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch<ActionType>) => {
     const response = await userAPI.getProfile(userId)
+    console.log(response)
         dispatch(setUserProfile(response.data));
 }
 export const getStatus = (userId: string) => async (dispatch: Dispatch<ActionType>) => {
@@ -98,6 +100,12 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch<ActionType>) 
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
+export const saveProfile = (profile: FormProfileDataType) => async (dispatch: Dispatch<ActionType>) => {
+    const response = await profileAPI.saveProfile(profile)
+    if(response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
 
 type ActionType = AddPostActionType | SetUserProfileActionType | SetStatusActionType | DeletePostActionType
 | SavePhotoSuccessActionType
@@ -111,6 +119,20 @@ export type ProfileType = {
     aboutMe: string
     fullName: string
     photos: { large: string, small: string }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    contacts: ContactsType
+}
+
+export type ContactsType = {
+    github: string | null
+    vk: string | null
+    facebook: string | null
+    instagram: string | null
+    twitter: string | null
+    website: string | null
+    youtube: string | null
+    mainLink: string | null
 }
 export type ProfileStateType = {
     newPostText: string,
