@@ -12,30 +12,20 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    captchaUrl?: string | null
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error,...props}) => {
-
+type PropsType = InjectedFormProps<FormDataType> & any
+// React.FC<InjectedFormProps<FormDataType>>
+const LoginForm  = (props: PropsType) => {
+    const { handleSubmit, error, captchaUrl} = props
     return (
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', Input, [required])}
             {createField('Password', 'password', Input, [required], {type: 'password'})}
             {createField(null, 'rememberMe', Input, [], {type: 'checkbox'}, 'remember me')}
-
-            {/*<div>*/}
-            {/*    <Field placeholder={'Email'} name={'email'} component={Input}*/}
-            {/*           validate={[required]}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <Field placeholder={'Password'} name={'password'} component={Input} type={'password'}*/}
-            {/*           validate={[required]}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <Field component={Input} name={'rememberMe'} type="checkbox"*/}
-            {/*    /> remember me*/}
-            {/*</div>*/}
+            {captchaUrl && <img src={captchaUrl}/>}
+            {captchaUrl && createField("Symbols from image", 'captchaUrl', Input, [required] )}
             {error && <div className={style.formSummeryError}>
                 {error}
             </div>}
@@ -52,23 +42,26 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 const Login = (props: any) => {
 
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captchaUrl)
     }
 
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
 
+    // @ts-ignore
     return <div>
 
         <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        {/*// @ts-ignore*/}
+        <LoginReduxForm onSubmit={onSubmit}  captchaUrl={props.captchaUrl}/>
     </div>
 }
 
 const mapStateToProps = (state: ReducerRootType): any => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

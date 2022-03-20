@@ -13,7 +13,7 @@ type PropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (formDataProfile: FormProfileDataType)=>void
+    saveProfile: (formDataProfile: FormProfileDataType)=>any
 }
 
 export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, saveProfile}: PropsType) => {
@@ -29,7 +29,11 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
         }
     }
     const onSubmit = (formDataProfile: FormProfileDataType) => {
-        saveProfile(formDataProfile)
+       saveProfile(formDataProfile).then(
+           ()=> {
+               setEditMode(false)
+           }
+       )
     }
 
     return (
@@ -41,7 +45,7 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
                 </div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 {editMode
-                    ? <ProfileDataFormReduxForm onSubmit={onSubmit}/>
+                    ? <ProfileDataFormReduxForm initialValues={profile}  onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={profile} isOwner={isOwner}/>}
             </div>
         </div>
@@ -65,12 +69,9 @@ const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileDataType) => 
             }
             <p><b>About me:</b> {profile.aboutMe}</p>
             <div className={classes.contacts}><b>Contacts:</b>
-                {Object.keys(profile.contacts).map((k) => {
-                    return <div>
-                        {/*// @ts-ignore*/}
-                        {<p><b>{k}:</b> {profile.contacts[k]}</p>}
-                    </div>
-                })}
+                <p><b>Facebook:</b> {profile.contacts.facebook}</p>
+                <p><b>Website:</b> {profile.contacts.website}</p>
+                <p><b>VK:</b> {profile.contacts.vk}</p>
             </div>
         </div>
     )

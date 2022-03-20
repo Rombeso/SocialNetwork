@@ -29,8 +29,8 @@ export const authAPI = {
     me() {
         return instanseAxios.get(`auth/me`)
     },
-    login(email:string, password:string, rememberMe: boolean = false) {
-        return instanseAxios.post(`auth/login`, {email, password, rememberMe})
+    login(email:string, password:string, rememberMe: boolean = false, captcha: string) {
+        return instanseAxios.post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {
         return instanseAxios.delete(`auth/login`)
@@ -58,5 +58,11 @@ export const profileAPI = {
     },
     saveProfile(profile: FormProfileDataType){
         return instanseAxios.put(`profile`, profile)
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instanseAxios.get(`security/get-captcha-url`)
     }
 }
