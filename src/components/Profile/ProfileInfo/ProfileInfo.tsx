@@ -39,7 +39,7 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
     return (
         <div>
             <div className={classes.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} alt=""/>
+                <img src={profile.photos.large || userPhoto}/>
                 <div>
                     {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 </div>

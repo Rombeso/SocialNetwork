@@ -1,16 +1,72 @@
 .header {
-    grid-area: h;
-    background-color: darkolivegreen;
+    @apply bg-white border-b;
+    /*grid-area: h;*/
+    /*background-color: darkolivegreen;*/
 }
 
-.header img {
-    width: 40px;
+.headerContainer {
+    @apply container mx-auto;
+    max-width: 970px;
+}
+
+.headerContainerItems {
+    @apply flex justify-between items-center h-12;
+}
+
+/*Left*/
+.leftSide {
+    @apply flex items-center h-full;
+}
+
+.logoBlock {
+    @apply w-40 mr-56;
+}
+
+.logoBlock svg {
+    @apply h-6;
+}
+
+.notificationBlock {
+    @apply px-4;
+}
+
+.notificationBlock svg {
+    @apply w-6 text-gray-400;
+}
+
+.playerBlock {
+    @apply px-4;
+}
+
+.playerBlock svg {
+    @apply w-6 text-gray-400;
+}
+
+/*Right*/
+.rightSide {
+    @apply h-full
 }
 
 .loginBlock {
-    float: right;
+
 }
 
-.loginBlock, a{
-    color: white;
+.userBlock {
+    @apply flex items-center h-full font-medium
+}
+
+.userName {
+
+}
+
+.userPhoto img {
+    @apply mx-2 rounded-full w-10 my-1
+}
+
+.userBlock button {
+    @apply hover:bg-gray-200 cursor-pointer px-3 py-1 leading-10 flex items-center h-full font-medium
+}
+
+.loginLink {
+    @apply px-3 py-1 leading-10 flex items-center h-full hover:bg-gray-200 cursor-pointer
 }

@@ -1,3 +1,20 @@
-.test {
-    @apply text-3xl font-bold underline text-red-600
+
+.appBody {
+  @apply min-h-screen bg-gray-100 text-base;
+}
+.appWrapper {
+
+
+  width: 1200px;
+  margin: 0 auto;
+  grid-template-areas:
+    "n c c";
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+}
+
+.appWrapperContent {
+  background-color: mediumturquoise;
 }

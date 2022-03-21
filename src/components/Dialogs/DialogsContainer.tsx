@@ -18,6 +18,7 @@ const DialogsContainer = (props: MassageDialogPropsType) => {
 
     const addMassage = (newMassageText: string) => {
             dispatch(addMassageAC(newMassageText))
+        // Диспачить имя и ID, склеивать и выводить их.
     }
 
     // const messageChange = (text: string) => {

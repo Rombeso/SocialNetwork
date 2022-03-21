@@ -34,14 +34,11 @@ class App extends React.Component<AppPropsType> {
             return <Preloader />
         }
         return (
-                <div className='app-wrapper'>
-                    <p className={s.test}>
-                    {/*<p className="text-3xl font-bold underline text-red-600">*/}
-                        Hello world!
-                    </p>
-                    <HeaderContainer/>
+            <div className={s.appBody}>
+                <HeaderContainer/>
+                <div className={s.appWrapper}>
                     <NavBar/>
-                    <div className='app-wrapper-content'>
+                    <div className={s.appWrapperContent}>
                         <Route path='/dialogs'
                                render={() => {
                                    return  <React.Suspense fallback={<Preloader />}>
@@ -66,6 +63,7 @@ class App extends React.Component<AppPropsType> {
                                render={() => <Login/>}/>
                     </div>
                 </div>
+            </div>
         );
     }
 }

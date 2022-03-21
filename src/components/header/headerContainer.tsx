@@ -3,25 +3,29 @@ import {Header} from "./header";
 import {connect} from "react-redux";
 import {AuthDataType, logout} from "../../redux/auth-reducer";
 import {ReducerRootType} from "../../redux/redux-store";
+import {ProfileType} from "../../redux/profile-reducer";
 
+type AddedPropsType = {
+    profile: ProfileType
+}
 
 class HeaderContainer extends React.Component<any> {
-    // componentDidMount() {
-    //     this.props.getAuthUsersData();
-    // }
+
     render() {
 
-        return <Header isAuth={this.props.isAuth} login={this.props.login} logout={this.props.logout}/>
+        return <Header isAuth={this.props.isAuth} profile={this.props.profile}
+                       login={this.props.login} logout={this.props.logout}/>
 
     }
 }
 
-const mapStateToProps = (state: ReducerRootType):AuthDataType => {
-   return {
+const mapStateToProps = (state: ReducerRootType):AuthDataType & AddedPropsType => {
+    return {
        isAuth: state.auth.isAuth,
        login: state.auth.login,
        userId: state.auth.userId,
        email: state.auth.email,
+       profile: state.profilePage.profile,
    }
 
 }
