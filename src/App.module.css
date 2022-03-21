@@ -1,0 +1,3 @@
+.test {
+    @apply text-3xl font-bold underline text-red-600
+}

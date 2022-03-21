@@ -5,7 +5,7 @@ import {BrowserRouter, HashRouter, Route, withRouter} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
-
+import s from './App.module.css'
 import UsersContainer from "./components/Users/UsersContainer";
 
 import HeaderContainer from "./components/header/headerContainer";
@@ -35,6 +35,10 @@ class App extends React.Component<AppPropsType> {
         }
         return (
                 <div className='app-wrapper'>
+                    <p className={s.test}>
+                    {/*<p className="text-3xl font-bold underline text-red-600">*/}
+                        Hello world!
+                    </p>
                     <HeaderContainer/>
                     <NavBar/>
                     <div className='app-wrapper-content'>
