@@ -3,16 +3,16 @@
   @apply min-h-screen bg-gray-100 text-base;
 }
 .appWrapper {
+@apply container mx-auto flex items-start;
 
-
-  width: 1200px;
-  margin: 0 auto;
-  grid-template-areas:
-    "n c c";
-  display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  width: 970px;
+  /*margin: 0 auto;*/
+  /*grid-template-areas:*/
+  /*  "n c c";*/
+  /*display: grid;*/
+  /*grid-template-rows: 60px 1fr;*/
+  /*grid-template-columns: 2fr 10fr;*/
+  /*grid-gap: 10px;*/
 }
 
 .appWrapperContent {

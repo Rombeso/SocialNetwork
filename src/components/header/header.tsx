@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
 import s from './header.module.css'
 import {ProfileType} from "../../redux/profile-reducer";
@@ -12,6 +12,14 @@ type PropsType = {
 }
 
 export const Header = ({login, isAuth, logout, profile}: PropsType) => {
+const [drop, setDrop] = useState<boolean>(false)
+
+    const onDropping = () => {
+      setDrop(!drop)
+    }
+    const onDroppingFalse = () => {
+      setDrop(false)
+    }
 
     return <header className={s.header}>
         <div className={s.headerContainer}>
@@ -74,10 +82,38 @@ export const Header = ({login, isAuth, logout, profile}: PropsType) => {
                 <div className={s.rightSide}>
                     <div className={s.loginBlock}>
                         {isAuth && profile.photos
-                            ? <div className={s.userBlock}>
+                            ? <div>
+                            <div className={s.userBlock} onClick={onDropping}>
                                 <div className={s.userName}>{login}</div>
                                 <div className={s.userPhoto}><img src={profile.photos.large || userPhoto}/></div>
-                                <button onClick={logout}>Log out</button>
+                                <div className={s.downIcon}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+
+
+                            </div>
+                                {drop && <div className={s.dropDownContainer} onMouseLeave={onDroppingFalse}>
+                                    <div className={s.dropDown}>
+                                        <div className={s.dropDownBlock}>
+                                            <NavLink to={'/profile'}>
+                                                <div className={s.userPhoto}>
+                                                    <img
+                                                        src={profile.photos.large || userPhoto}/>
+                                                </div>
+                                                <div className={s.userName}>{login}
+                                                <p>Go to profile</p>
+                                                </div>
+                                            </NavLink>
+                                        </div>
+                                        <div className={s.line}></div>
+                                        <div className={s.dropDownBlock}>
+                                            <button onClick={logout}>Log out</button>
+                                        </div>
+                                    </div>
+                                </div>}
                             </div>
                             : <div className={s.loginLink}>
                                 <NavLink to={'/login'}>Login</NavLink>

@@ -1,11 +1,11 @@
 .header {
-    @apply bg-white border-b;
+    @apply bg-white border-b ;
     /*grid-area: h;*/
     /*background-color: darkolivegreen;*/
 }
 
 .headerContainer {
-    @apply container mx-auto;
+    @apply container mx-auto ;
     max-width: 970px;
 }
 
@@ -44,29 +44,52 @@
 
 /*Right*/
 .rightSide {
-    @apply h-full
+    @apply relative h-full
 }
 
 .loginBlock {
-
+@apply   h-full;
 }
 
 .userBlock {
-    @apply flex items-center h-full font-medium
+    @apply flex items-center h-full  hover:bg-gray-200 cursor-pointer;
 }
 
 .userName {
-
+    @apply tracking-normal truncate font-medium;
+    max-width: 12rem;
 }
 
 .userPhoto img {
-    @apply mx-2 rounded-full w-10 my-1
+    @apply mx-2 rounded-full w-10 my-1 flex-shrink-0;
+}
+.downIcon svg{
+@apply w-4 text-gray-400 ;
 }
 
-.userBlock button {
-    @apply hover:bg-gray-200 cursor-pointer px-3 py-1 leading-10 flex items-center h-full font-medium
-}
 
 .loginLink {
-    @apply px-3 py-1 leading-10 flex items-center h-full hover:bg-gray-200 cursor-pointer
+    @apply px-3 py-1 leading-10 flex items-center h-full hover:bg-gray-200 cursor-pointer;
+}
+
+.dropDownContainer {
+    @apply  absolute right-0 top-full;
+}
+
+.dropDown {
+    @apply  bg-white border w-52 py-1;
+}
+
+.dropDownBlock a{
+    @apply  flex hover:bg-gray-200 items-center py-1 px-2 my-1;
+}
+
+.dropDownBlock a p{
+    @apply  text-xs text-gray-400;
+}
+.line {
+    @apply bg-gray-200 h-px mx-4
+}
+.dropDownBlock button {
+    @apply hover:bg-gray-200 my-1 cursor-pointer px-3 py-2 leading-10 flex items-center h-full w-full font-medium;
 }

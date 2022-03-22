@@ -1,11 +1,11 @@
-.nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 20px;
+.container {
+@apply w-40 mr-2 flex-shrink-0;
 }
-
+.navContainer {
+    @apply p-4;
+}
 .item a {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
