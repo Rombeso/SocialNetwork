@@ -1,10 +1,27 @@
-.descriptionBlock {
-    padding: 10px;
+/*.mainContainer {*/
+/*   @apply flex items-start;*/
+
+/*}*/
+
+.centerContainer {
+  @apply w-56 mr-4 flex-shrink-0;
 }
 
+.imageBlock {
+    @apply bg-white p-4;
+}
+
+.rightContainer {
+    @apply flex-1
+}
+
+.descriptionBlock {
+    @apply bg-white p-4;
+}
 .image {
     width: 100%;
 }
+
 
 .contacts div {
    padding-left: 10px;

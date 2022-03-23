@@ -27,7 +27,7 @@
 }
 
 .notificationBlock {
-    @apply px-4;
+    @apply px-4 ml-1;
 }
 
 .notificationBlock svg {

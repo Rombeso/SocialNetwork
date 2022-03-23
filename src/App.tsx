@@ -38,7 +38,7 @@ class App extends React.Component<AppPropsType> {
                 <HeaderContainer/>
                 <div className={s.appWrapper}>
                     <NavBar/>
-                    <div className={s.appWrapperContent}>
+                    <>
                         <Route path='/dialogs'
                                render={() => {
                                    return  <React.Suspense fallback={<Preloader />}>
@@ -61,7 +61,7 @@ class App extends React.Component<AppPropsType> {
                                render={() => <UsersContainer/>}/>
                         <Route path='/login'
                                render={() => <Login/>}/>
-                    </div>
+                    </>
                 </div>
             </div>
         );

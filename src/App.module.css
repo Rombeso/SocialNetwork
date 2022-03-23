@@ -3,7 +3,7 @@
   @apply min-h-screen bg-gray-100 text-base;
 }
 .appWrapper {
-@apply container mx-auto flex items-start;
+@apply container mx-auto flex items-start pt-4;
 
   width: 970px;
   /*margin: 0 auto;*/
@@ -15,6 +15,6 @@
   /*grid-gap: 10px;*/
 }
 
-.appWrapperContent {
-  background-color: mediumturquoise;
-}
+/*.appWrapperContent {*/
+/*  background-color: mediumturquoise;*/
+/*}*/

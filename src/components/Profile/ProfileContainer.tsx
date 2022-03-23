@@ -54,7 +54,7 @@ class ProfileContainer extends React.Component<CommonType> {
 
     render() {
         return (
-            <div>
+            <>
                 <Profile
                     isOwner={!this.props.match.params.userId}
                     profile={this.props.profile}
@@ -63,7 +63,7 @@ class ProfileContainer extends React.Component<CommonType> {
                     savePhoto={this.props.savePhoto}
                     saveProfile={this.props.saveProfile}
                 />
-            </div>)
+            </>)
     }
 }
 
