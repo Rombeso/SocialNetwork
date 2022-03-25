@@ -17,3 +17,10 @@
 .item a.active {
     color: royalblue;
 }
+
+.line {
+    @apply bg-gray-200 h-px my-2 ml-2;
+}
+.footer {
+    @apply flex text-gray-500 text-xs hover:underline ml-2;
+}

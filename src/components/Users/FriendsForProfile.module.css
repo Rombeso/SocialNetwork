@@ -1,0 +1,11 @@
+.friendBlock {
+
+}
+
+.usersPhoto {
+@apply rounded-full px-1 mb-1;
+}
+
+.userName {
+    @apply text-blue-900 hover:underline truncate text-xs text-center
+}

@@ -33,7 +33,7 @@ useEffect(()=>{
         <div>
             { !editMode &&
             <div>
-                <b>Status: </b><span  data-testid="status" onDoubleClick={activeEditMode}>{props.status || "Enter your status"}</span>
+                <span  data-testid="status" onDoubleClick={activeEditMode}>{props.status || "Enter your status"}</span>
             </div>
             }
             {editMode &&

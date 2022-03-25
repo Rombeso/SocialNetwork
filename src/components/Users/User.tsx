@@ -40,10 +40,6 @@ export const User = ({user, followingInProgress, unfollow, follow}: PropsType) =
             <div>{user.name}</div>
             <div>{user.status}</div>
         </span>
-        <span>
-            <div>{"user.location.country"}</div>
-            <div>{"user.location.city"}</div>
-        </span>
     </span>
         </div>
 )

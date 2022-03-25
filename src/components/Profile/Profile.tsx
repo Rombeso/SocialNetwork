@@ -1,6 +1,6 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ProfileStateType, ProfileType} from "../../redux/profile-reducer";
+import {ProfileType} from "../../redux/profile-reducer";
 import {FormProfileDataType} from "./ProfileInfo/ProfileDataForm";
 
 type MassageMyPostPropsType = {
@@ -10,6 +10,7 @@ type MassageMyPostPropsType = {
     isOwner: boolean
     savePhoto: (file: File)=>void
     saveProfile: (profile: FormProfileDataType)=>void
+    login:string | null
 }
 
 export const Profile = (props: MassageMyPostPropsType) => {
@@ -21,6 +22,7 @@ export const Profile = (props: MassageMyPostPropsType) => {
                          isOwner={props.isOwner}
                          savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}
+                         login={props.login}
             />
         </>)
 }

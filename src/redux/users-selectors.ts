@@ -24,3 +24,8 @@ export const getIsFetching = (state: ReducerRootType) => {
 export const getFollowingInProgress = (state: ReducerRootType) => {
     return state.usersPage.followingInProgress
 }
+// export const getISFollowed = (state: ReducerRootType) => {
+//     return state.usersPage.users.followed
+// }
+
+

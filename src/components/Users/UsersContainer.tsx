@@ -10,7 +10,7 @@ import {
     toggleFollowingInProgress,
     getUsersThunkCreator,
     onPageChangedThunkCreator,
- follow, unfollow
+    follow, unfollow
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
@@ -23,6 +23,10 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {PathParamsType} from "../Profile/ProfileContainer";
+import {Friends} from "./Friends";
+import {FriendsForProfile} from "./FriendsForProfile";
 
 type MapStateType = {
     users: Array<usersType>
@@ -41,26 +45,32 @@ type MapDispatchType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
-    getUsersThunkCreator:(currentPage: number, pageSize: number) => void
-    onPageChangedThunkCreator:(pageNumber: number, pageSize: number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    onPageChangedThunkCreator: (pageNumber: number, pageSize: number) => void
 }
 
-export type UsersPropsType = MapStateType & MapDispatchType
+export type UsersPropsType = MapStateType & MapDispatchType & RouteComponentProps<PathParamsType>
 
-class UsersContainer extends React.Component<UsersPropsType> {
+class UsersContainer extends React.PureComponent<UsersPropsType> {
     componentDidMount() {
         const {currentPage, pageSize} = this.props
+        if (this.props.match.url == '/friends' || this.props.match.url == '/profile') {
+            this.props.getUsersThunkCreator(1, 100)
+        } else {
         this.props.getUsersThunkCreator(currentPage, pageSize)
+        }
     }
 
     onPageChanged = (pageNumber: number) => {
         const {pageSize} = this.props
         this.props.onPageChangedThunkCreator(pageNumber, pageSize)
+
     }
 
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
+            {this.props.match.url === '/users' &&
             <Users
                 totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
@@ -72,7 +82,16 @@ class UsersContainer extends React.Component<UsersPropsType> {
                 onPageChanged={this.onPageChanged}
                 followingInProgress={this.props.followingInProgress}
 
-            />
+            />}
+            {this.props.match.url === '/friends' && <Friends
+                unfollow={this.props.unfollow}
+                follow={this.props.follow}
+                users={this.props.users}
+                followingInProgress={this.props.followingInProgress}
+            />}
+            {this.props.match.url === '/profile' && <FriendsForProfile
+                users={this.props.users}
+            />}
         </>
     }
 }
@@ -89,15 +108,15 @@ const mapStateToProps = (state: ReducerRootType): MapStateType => {
 }
 
 export default compose<React.ComponentType>(
-connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleFollowingInProgress,
-    getUsersThunkCreator,
-    onPageChangedThunkCreator,
-})
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleIsFetching,
+        toggleFollowingInProgress,
+        getUsersThunkCreator,
+        onPageChangedThunkCreator,
+    }), withRouter,
 )(UsersContainer)

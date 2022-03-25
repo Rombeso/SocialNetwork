@@ -7,7 +7,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {FormProfileDataType} from "./ProfileInfo/ProfileDataForm";
 
-type PathParamsType = {
+export type PathParamsType = {
     userId: string
 }
 
@@ -15,7 +15,8 @@ export type MapStateType = {
     profile?: any
     isAuth?: boolean
     status: string
-    autorizedUserId: number | null
+    autorizedUserId: number | null,
+    login:string | null
 }
 
 type MapDispatchType = {
@@ -32,6 +33,7 @@ type CommonType = RouteComponentProps<PathParamsType> & OwnPropsType
 class ProfileContainer extends React.Component<CommonType> {
 
     refreshProfile() {
+
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.autorizedUserId !== null ? String(this.props.autorizedUserId) : '';
@@ -62,6 +64,7 @@ class ProfileContainer extends React.Component<CommonType> {
                     updateStatus={this.props.updateStatus}
                     savePhoto={this.props.savePhoto}
                     saveProfile={this.props.saveProfile}
+                    login={this.props.login}
                 />
             </>)
     }
@@ -73,7 +76,7 @@ const mapStateToProps = (state: ReducerRootType): MapStateType => {
         status: state.profilePage.status,
         autorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth,
-        // savePhoto: state
+        login: state.auth.login,
     }
 }
 export default compose<React.ComponentType>(

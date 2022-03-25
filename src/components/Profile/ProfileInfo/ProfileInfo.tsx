@@ -7,6 +7,8 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import ProfileDataForm, {FormProfileDataType} from "./ProfileDataForm";
 import ProfileDataFormReduxForm from "./ProfileDataForm";
 import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
+import UsersContainer from "../../Users/UsersContainer";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
     profile: ProfileType
@@ -15,9 +17,10 @@ type PropsType = {
     isOwner: boolean
     savePhoto: (file: File) => void
     saveProfile: (formDataProfile: FormProfileDataType) => any
+    login: string | null
 }
 
-export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, saveProfile}: PropsType) => {
+export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, saveProfile, login}: PropsType) => {
     let [editMode, setEditMode] = useState(false);
 
     if (!profile) {
@@ -41,30 +44,64 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
         <>
             <div className={s.centerContainer}>
                 <div className={s.imageBlock}>
-                    <img src={profile.photos.large || userPhoto}/>
-                    <div>
-                        {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                    <div className={s.avatar}>
+                        <img src={profile.photos.large || userPhoto}/>
                     </div>
+
+                    {isOwner && <div className={s.avatarButton}>
+                        <p>Edit avatar</p>
+                        <input type={"file"} onChange={onMainPhotoSelected}/>
+                    </div>}
                 </div>
-                <div className={s.friendsBlock}>
-                    Friends
+
+                <div className={s.friendsContainer}>
+                    <div className={s.friendsTitle}>
+                        <NavLink to={'/friends'}>Friends</NavLink>
+                    </div>
+
+                    <div className={s.friendBlock}>
+                        <UsersContainer/>
+                    </div>
+
                 </div>
             </div>
 
+
             <div className={s.rightContainer}>
                 <div className={s.descriptionBlock}>
-                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-                    {editMode
-                        ? <ProfileDataFormReduxForm initialValues={profile} onSubmit={onSubmit}/>
-                        : <ProfileData goToEditMode={() => {
+                    <div className={s.profileBlock}>
+                        <div className={s.profileHeaders}>
+                            <div className={s.profileLogin}>{login}</div>
+                            <div className={s.profileOnline}>online</div>
+                        </div>
+                        <div className={s.status}>
+                            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+
+                        </div>
+                        <div className={s.line}></div>
+                        <div className={s.profileBody}>
+                            { editMode
+                            ? <ProfileDataFormReduxForm initialValues={profile} onSubmit={onSubmit}/>
+                            : <ProfileData goToEditMode={() => {
                             setEditMode(true)
                         }} profile={profile} isOwner={isOwner}/>}
+
+                        </div>
+
+                    </div>
                 </div>
-                <div className={s.myPhotosBlock}>
-                    My Photos
+
+                <div className={s.myPhotosContainer}>
+                    <div className={s.myPhotosBlock}>
+                        My Photos
+                    </div>
                 </div>
-                <div className={s.myPostsBlock}>
-                    <MyPostsContainer/>
+
+                <div className={s.myPostsContainer}>
+                    <div className={s.myPostsBlock}>
+                        <MyPostsContainer/>
+                    </div>
+
                 </div>
             </div>
 
@@ -82,9 +119,6 @@ type PropsProfileDataType = {
 const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileDataType) => {
     return (
         <div>
-            {isOwner && <div>
-                <button onClick={goToEditMode}>Edit</button>
-            </div>}
             <p><b>Full name:</b> {profile.fullName}</p>
             <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</p>
             {profile.lookingForAJob &&
@@ -96,6 +130,9 @@ const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileDataType) => 
                 <p><b>Website:</b> {profile.contacts.website}</p>
                 <p><b>VK:</b> {profile.contacts.vk}</p>
             </div>
+            {isOwner && <div>
+                <button onClick={goToEditMode}>Edit</button>
+            </div>}
         </div>
     )
 }

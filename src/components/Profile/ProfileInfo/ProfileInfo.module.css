@@ -1,27 +1,88 @@
-/*.mainContainer {*/
-/*   @apply flex items-start;*/
 
-/*}*/
-
+/*---*/
 .centerContainer {
   @apply w-56 mr-4 flex-shrink-0;
 }
 
 .imageBlock {
-    @apply bg-white p-4;
+    @apply bg-white rounded border p-4 mb-4;
+}
+.avatar img{
+    @apply rounded-sm;
 }
 
+.avatarButton {
+    @apply mt-3 bg-gray-200 rounded w-full px-2 py-2 outline-none relative hover:bg-gray-300 cursor-pointer;
+}
+.avatarButton p {
+    @apply absolute top-2 text-lg left-14;
+}
+.avatarButton input{
+    @apply text-transparent opacity-0 cursor-pointer w-full;
+}
+
+.friendsContainer {
+    @apply bg-white rounded border;
+}
+.friendsTitle {
+    @apply text-xl p-3 hover:underline;
+}
+
+.friendBlock{
+@apply grid grid-cols-3 gap-3 p-3
+}
+
+
+/*---*/
 .rightContainer {
     @apply flex-1
 }
 
+/*profile*/
 .descriptionBlock {
-    @apply bg-white p-4;
+    @apply bg-white p-3 rounded border mb-4;
 }
-.image {
-    width: 100%;
+.profileBlock {
+    @apply p-3;
+}
+.profileHeaders {
+    @apply flex justify-between items-center;
 }
 
+.profileLogin {
+    @apply font-medium text-xl
+}
+.profileOnline {
+    @apply text-gray-400
+}
+
+.status {
+    @apply cursor-pointer
+}
+.line {
+    @apply px-3 h-px bg-gray-200 my-2;
+}
+.profileBody {
+
+}
+/*Photo*/
+.myPhotosContainer {
+    @apply bg-white p-3 rounded border mb-4;
+}
+.myPhotosBlock{
+    @apply p-3;
+}
+
+
+
+/*Posts*/
+.myPostsContainer {
+    @apply bg-white p-3 rounded border mb-4;;
+}
+
+.myPostsBlock {
+    @apply p-3;
+}
 
 .contacts div {
    padding-left: 10px;
