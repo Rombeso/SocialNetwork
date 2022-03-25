@@ -43,6 +43,7 @@ useEffect(()=>{
                     onBlur={deactivateEditMode}
                     onChange={onStatusChange}
                     value={status}
+                       style={{width: 300}}
                 />
             </div>
             }

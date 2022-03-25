@@ -14,7 +14,7 @@ export const FriendsForProfile = ({
     return (
             <>
                 {
-                    users.map((u , index)=> u.followed != false && index < 12
+                    users.map((u , index)=> u.followed != false
                         ? <div key={u.id} className={s.friendBlock}>
                             <NavLink to={'/profile/' + u.id}>
                                 <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.usersPhoto}/>

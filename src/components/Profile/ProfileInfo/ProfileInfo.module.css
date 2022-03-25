@@ -29,7 +29,8 @@
 }
 
 .friendBlock{
-@apply grid grid-cols-3 gap-3 p-3
+@apply grid grid-cols-3 gap-3 p-3 overflow-hidden;
+    max-height: 339px;
 }
 
 
@@ -57,14 +58,24 @@
 }
 
 .status {
-    @apply cursor-pointer
+    @apply cursor-pointer hover:underline;
 }
 .line {
     @apply px-3 h-px bg-gray-200 my-2;
 }
 .profileBody {
-
+@apply grid grid-cols-3 gap-2
 }
+
+.profileBodyTitle p{
+@apply text-gray-400
+}
+
+.profileBodyDescription {
+    @apply col-span-2
+}
+
+
 /*Photo*/
 .myPhotosContainer {
     @apply bg-white p-3 rounded border mb-4;
@@ -73,7 +84,9 @@
     @apply p-3;
 }
 
-
+.profileBodyButton {
+    @apply text-blue-600 font-medium items-center
+}
 
 /*Posts*/
 .myPostsContainer {
@@ -84,6 +97,14 @@
     @apply p-3;
 }
 
-.contacts div {
+.contact p {
    padding-left: 10px;
+}
+
+.formSubmit {
+    @apply w-72
+}
+
+.divBodyButton {
+    @apply mt-2
 }

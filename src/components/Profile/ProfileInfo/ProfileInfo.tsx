@@ -79,6 +79,7 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
 
                         </div>
                         <div className={s.line}></div>
+
                         <div className={s.profileBody}>
                             { editMode
                             ? <ProfileDataFormReduxForm initialValues={profile} onSubmit={onSubmit}/>
@@ -118,21 +119,33 @@ type PropsProfileDataType = {
 
 const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileDataType) => {
     return (
-        <div>
-            <p><b>Full name:</b> {profile.fullName}</p>
-            <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</p>
-            {profile.lookingForAJob &&
-            <p><b>My professional skills:</b> {profile.lookingForAJobDescription}</p>
-            }
-            <p><b>About me:</b> {profile.aboutMe}</p>
-            <div className={s.contacts}><b>Contacts:</b>
-                <p><b>Facebook:</b> {profile.contacts.facebook}</p>
-                <p><b>Website:</b> {profile.contacts.website}</p>
-                <p><b>VK:</b> {profile.contacts.vk}</p>
+        <>
+            <div className={s.profileBodyTitle}>
+                <p>Full name:</p>
+                <p>Looking for a job:</p>
+                <p>My professional skills:</p>
+                <p>About me:</p>
+                <div className={s.contacts}><b>Contacts:</b></div>
+                <p>Facebook:</p>
+                <p>Website:</p>
+                <p>VK:</p>
             </div>
+            <div className={s.profileBodyDescription}>
+                <p>{profile.fullName}</p>
+                <p> {profile.lookingForAJob ? 'yes' : 'no'}</p>
+                {profile.lookingForAJob &&
+                <p> {profile.lookingForAJobDescription}</p>
+                }
+                <p> {profile.aboutMe}</p>
+                <div className={s.line}></div>
+                <p> {profile.contacts.facebook}</p>
+                <p>{profile.contacts.website}</p>
+                <p>{profile.contacts.vk}</p>
+            </div>
+
             {isOwner && <div>
-                <button onClick={goToEditMode}>Edit</button>
+                <button onClick={goToEditMode} className={s.profileBodyButton}>Edit profile</button>
             </div>}
-        </div>
+        </>
     )
 }

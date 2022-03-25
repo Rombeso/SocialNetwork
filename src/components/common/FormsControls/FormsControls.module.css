@@ -1,5 +1,7 @@
-.form-control {
-
+.children {
+border: 1px solid gray;
+    border-radius: 3px;
+    width: 100%;
 }
 
 .formControl.error input, .formControl.error textarea{
