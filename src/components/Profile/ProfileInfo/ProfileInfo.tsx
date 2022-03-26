@@ -9,6 +9,9 @@ import ProfileDataFormReduxForm from "./ProfileDataForm";
 import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
 import UsersContainer from "../../Users/UsersContainer";
 import {NavLink} from "react-router-dom";
+import photo1 from './../../../assets/photos/1.jpg'
+import photo2 from './../../../assets/photos/2.jpg'
+import photo3 from './../../../assets/photos/3.jpg'
 
 type PropsType = {
     profile: ProfileType
@@ -94,19 +97,31 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
 
                 <div className={s.myPhotosContainer}>
                     <div className={s.myPhotosBlock}>
-                        My Photos
+                        <p className={s.myPhotosTitle}>My photos <span>4</span></p>
+                        <div className={s.photos}>
+                            <div>
+                                <img src={profile.photos.large || userPhoto}/>
+                            </div>
+                            <div>
+                                <img src={photo1}/>
+                            </div>
+                            <div>
+                                <img src={photo2}/>
+                            </div>
+                            <div>
+                                <img src={photo3}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className={s.myPostsContainer}>
-                    <div className={s.myPostsBlock}>
+                {/*<div className={s.myPostsContainer}>*/}
+                {/*    <div className={s.myPostsBlock}>*/}
                         <MyPostsContainer/>
-                    </div>
+                    {/*</div>*/}
 
-                </div>
+                {/*</div>*/}
             </div>
-
-
         </>
     )
 }
@@ -125,7 +140,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileDataType) => 
                 <p>Looking for a job:</p>
                 <p>My professional skills:</p>
                 <p>About me:</p>
-                <div className={s.contacts}><b>Contacts:</b></div>
+                <div><p className={s.contactsTitle}>Contacts</p></div>
                 <p>Facebook:</p>
                 <p>Website:</p>
                 <p>VK:</p>

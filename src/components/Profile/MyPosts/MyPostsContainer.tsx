@@ -19,6 +19,7 @@ export const MyPostsContainer = (props: SomePT) => {
             massageMyPost={profilePage.massageMyPost}
             newPostText={profilePage.newPostText}
             addPost={addPost}
+            profile={profilePage.profile}
         />
     )
 }

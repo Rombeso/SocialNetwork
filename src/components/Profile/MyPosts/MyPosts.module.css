@@ -1,7 +1,33 @@
 .postBlock {
-    padding: 10px;
+    @apply bg-white p-3 rounded border mb-4;
 }
 
-.posts {
-    margin-top: 10px;
+.addPosts {
+    @apply p-2 flex ;
+}
+
+.myPostsBlock{
+    @apply p-2;
+}
+
+.userPhoto img {
+    @apply ml-1 mr-4 rounded-full w-10 my-1 flex-shrink-0;
+}
+
+.line {
+    @apply px-3 h-px bg-gray-200 mb-2;
+}
+
+.myPostsTitle {
+    @apply h-10 w-20 border-b border-blue-600 text-center
+}
+.fieldBlock {
+    @apply w-full relative
+}
+
+.fieldBlock textarea{
+    @apply border-none
+}
+.fieldButton{
+    @apply  relative right-12 mt-2 px-3 py-1 bg-blue-600 rounded font-medium text-gray-50;
 }

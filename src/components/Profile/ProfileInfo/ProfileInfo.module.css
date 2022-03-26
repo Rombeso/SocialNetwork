@@ -25,7 +25,7 @@
     @apply bg-white rounded border;
 }
 .friendsTitle {
-    @apply text-xl p-3 hover:underline;
+    @apply text-lg p-3 hover:underline font-medium;
 }
 
 .friendBlock{
@@ -75,31 +75,41 @@
     @apply col-span-2
 }
 
-
 /*Photo*/
 .myPhotosContainer {
-    @apply bg-white p-3 rounded border mb-4;
+    @apply bg-white px-3 py-2 rounded border mb-4;
 }
 .myPhotosBlock{
-    @apply p-3;
+    @apply px-2;
+}
+.myPhotosTitle {
+    @apply pb-2 font-medium;
+}
+.myPhotosTitle span{
+    @apply text-gray-400;
 }
 
 .profileBodyButton {
     @apply text-blue-600 font-medium items-center
 }
+.photos {
+    @apply grid grid-cols-4 gap-1 mb-2;
+}
+
 
 /*Posts*/
 .myPostsContainer {
-    @apply bg-white p-3 rounded border mb-4;;
+    @apply bg-white p-3 rounded border mb-4;
 }
 
 .myPostsBlock {
     @apply p-3;
 }
 
-.contact p {
-   padding-left: 10px;
+.contactsTitle {
+    @apply font-medium;
 }
+
 
 .formSubmit {
     @apply w-72
