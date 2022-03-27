@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: dimgrey;
-  @apply min-h-screen bg-gray-100
+  @apply min-h-screen bg-gray-100;
 }
 
 code {
