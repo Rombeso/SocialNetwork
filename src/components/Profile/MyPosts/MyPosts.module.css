@@ -11,11 +11,11 @@
 }
 
 .userPhoto img {
-    @apply ml-1 mr-4 rounded-full w-10 my-1 flex-shrink-0;
+    @apply ml-1 mr-4 rounded-full w-12 my-1 flex-shrink-0;
 }
 
 .line {
-    @apply px-3 h-px bg-gray-200 mb-2;
+    @apply h-px bg-gray-200 mb-2;
 }
 
 .myPostsTitle {
@@ -29,5 +29,5 @@
     @apply border-none
 }
 .fieldButton{
-    @apply  relative right-12 mt-2 px-3 py-1 bg-blue-600 rounded font-medium text-gray-50;
+    @apply  relative right-14 mt-2 px-3 py-1 bg-blue-600 rounded font-medium text-gray-50;
 }

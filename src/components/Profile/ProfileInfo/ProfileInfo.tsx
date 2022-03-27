@@ -117,7 +117,7 @@ export const ProfileInfo = ({profile, updateStatus, status, isOwner, savePhoto, 
 
                 {/*<div className={s.myPostsContainer}>*/}
                 {/*    <div className={s.myPostsBlock}>*/}
-                        <MyPostsContainer/>
+                        <MyPostsContainer login={login}/>
                     {/*</div>*/}
 
                 {/*</div>*/}

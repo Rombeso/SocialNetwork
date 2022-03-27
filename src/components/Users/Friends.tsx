@@ -1,6 +1,8 @@
 import React from "react";
 import {usersType} from "../../redux/users-reducer";
 import {User} from "./User";
+import {Redirect} from "react-router-dom";
+import s from './users.module.css'
 
 
 type PropsType = {
@@ -8,6 +10,7 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     followingInProgress: Array<any>,
+    isAuth: boolean
 }
 
 export const Friends = ({
@@ -15,10 +18,14 @@ export const Friends = ({
                           follow,
                           unfollow,
                           followingInProgress,
+                            isAuth,
                           ...props
                       }: PropsType) => {
+    if (!isAuth) {
+        return <Redirect to={'/login'}/>
+    }
     return (
-        <div>
+        <div className={s.usersBlock}>
             <div>
                 {
                     users.map(u => u.followed != false

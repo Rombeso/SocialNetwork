@@ -14,8 +14,8 @@ const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
 
 let initialState = {
     massageMyPost: [
-        {id: '1', massage: 'Hi, how are you?', likesCounter: '5'},
-        {id: '2', massage: "It's my first post", likesCounter: '12'}
+        {id: '1', massage: 'Avoiding the phrase "I don\'t have time...", will soon help you to realize that you do have the time needed for just about anything you choose to accomplish in life.', likesCounter: '5', viewers: '20'},
+        {id: '2', massage: "Experience shows that success is due less to ability than to zeal. The winner is he who gives himself to his work, body and soul.", likesCounter: '12', viewers: '56'}
     ],
     newPostText: 'it-kamasutra.com',
     profile: '',
@@ -28,9 +28,10 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
             let newPost: massageMyPostPropsType = {
                 id: '5',
                 massage: action.newPostText,
-                likesCounter: '0'
+                likesCounter: '0',
+                viewers: '0'
             }
-            state.massageMyPost.push(newPost);
+            state.massageMyPost.unshift(newPost);
             return {...state, massageMyPost: [...state.massageMyPost]};
         case SET_STATUS:
             return {...state, status: action.payload.status};

@@ -1,15 +1,14 @@
 .paginator{
-    margin: 10px;
+    @apply bg-white p-3 rounded border mb-4 pl-4 w-full text-center;
+}
+.paginator button{
+    @apply mx-4 font-medium text-lg text-blue-600
 }
 
 .selectedPage {
-    font-size: large;
-    font-weight: bold;
-    border-color: black;
+    @apply font-medium bg-blue-500;
 }
 
 .page {
-    cursor: pointer;
-    border: 1px solid dimgrey;
-    padding: 2px;
+    @apply cursor-pointer p-2
 }

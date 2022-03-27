@@ -1,15 +1,27 @@
-.usersPhoto {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+
+.userContainer {
+    @apply flex bg-white rounded border p-4 w-auto;
 }
 
-.selectedPage {
-    font-size: large;
-    font-weight: bold;
+.line {
+    @apply h-px bg-gray-200 mb-2 ml-4;
 }
 
-.page {
-    margin: 5px;
-    cursor: pointer;
+.avatarBlock img{
+    @apply ml-1 mr-4 rounded-full w-20 h-20 my-1 flex-shrink-0;
+}
+.usersBlock {
+    @apply w-full
+}
+
+.mainBlock button {
+    @apply mt-1 bg-gray-300 px-2 py-1 rounded
+}
+
+.status {
+    @apply h-6
+}
+
+.name {
+    @apply font-medium
 }

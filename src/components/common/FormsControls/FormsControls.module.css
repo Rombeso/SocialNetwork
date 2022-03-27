@@ -1,5 +1,5 @@
 .children {
-border: 1px solid gray;
+    border: 1px solid gray;
     border-radius: 3px;
     width: 100%;
     padding: 0 2px;
@@ -18,4 +18,20 @@ border: 1px solid gray;
     padding: 5px;
     color: red;
     width: 300px;
+}
+
+.title {
+    @apply text-xl font-bold my-10
+}
+
+.loginContainer {
+    @apply text-center mx-auto
+}
+
+.loginContainer div input{
+    @apply my-2 p-1
+}
+
+.loginBottom {
+    @apply mt-2 px-3 py-1 bg-blue-600 rounded font-medium text-gray-50;
 }

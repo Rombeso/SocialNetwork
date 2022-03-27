@@ -1,9 +1,46 @@
-.item {
-    color: crimson;
+/*.item {*/
+/*    color: crimson;*/
+/*}*/
+.title {
+@apply flex
 }
 
-.item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.avatar {
+    @apply mr-4 rounded-full w-12 my-1 flex-shrink-0
+}
+
+.name {
+    @apply text-sm font-medium text-blue-600 mt-1.5
+}
+
+.name p{
+    @apply text-sm text-gray-400
+}
+
+.massage {
+    @apply my-2
+}
+
+.line {
+    @apply h-px bg-gray-200 mb-2 my-4;
+}
+
+.footer {
+    @apply flex justify-between mt-4
+}
+
+.love {
+    @apply flex text-gray-400 bg-gray-100 px-3 py-1 rounded-2xl
+}
+
+.love span {
+    @apply ml-1
+}
+
+.eye {
+    @apply flex text-gray-400
+}
+
+.eye span {
+    @apply ml-1
 }

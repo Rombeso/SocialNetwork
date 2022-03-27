@@ -2,6 +2,7 @@ import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfileType} from "../../redux/profile-reducer";
 import {FormProfileDataType} from "./ProfileInfo/ProfileDataForm";
+import {Redirect} from "react-router-dom";
 
 type MassageMyPostPropsType = {
     profile: ProfileType

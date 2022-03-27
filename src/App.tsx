@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {NavBar} from './components/Navbar/Navbar';
-import {BrowserRouter, HashRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
@@ -38,7 +38,7 @@ class App extends React.Component<AppPropsType> {
                 <HeaderContainer/>
                 <div className={s.appWrapper}>
                     <NavBar/>
-                    <>
+                    <Switch>
                         <Route path='/dialogs'
                                render={() => {
                                    return  <React.Suspense fallback={<Preloader />}>
@@ -63,7 +63,10 @@ class App extends React.Component<AppPropsType> {
                                render={() => <UsersContainer/>}/>
                         <Route path='/login'
                                render={() => <Login/>}/>
-                    </>
+                        <Route path='/' exact><Redirect to='/profile'/></Route>
+                        <Route path="*"
+                               render={()=> <div style={{fontSize: "xx-large", margin: "0 auto",}}>404 PAGE NOT FOUND</div>}/>
+                    </Switch>
                 </div>
             </div>
         );

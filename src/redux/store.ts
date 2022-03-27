@@ -4,7 +4,8 @@ import  {AddMassageActionType} from "./dialogs-reducer";
 export type massageMyPostPropsType = {
     id?: string,
     massage: string,
-    likesCounter: string
+    likesCounter: string,
+    viewers: string,
 }
 
 export type dialogDatPropsType = {

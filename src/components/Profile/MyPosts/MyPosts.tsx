@@ -6,13 +6,15 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 import userPhoto from "../../../assets/images/pngwing.com.png";
-
+import {reset} from 'redux-form';
+import {useDispatch} from "react-redux";
 
 type SomePT = {
     massageMyPost: Array<massageMyPostPropsType>
     newPostText: string
     addPost: (value: any) => void
     profile: any
+    login: string | null
 }
 
 export const MyPosts = (props: SomePT) => {
@@ -20,6 +22,8 @@ export const MyPosts = (props: SomePT) => {
     let addNewPost = (value: any) => {
         props.addPost(value.newPostText)
     }
+    const dispatch = useDispatch()
+    dispatch(reset('myPostAddNewForm'));
 
     return (
         <>
@@ -39,7 +43,10 @@ export const MyPosts = (props: SomePT) => {
                 <div className={s.myPostsBlock}>
                     <div className={s.myPostsTitle}>All entries</div>
                     <div className={s.line}></div>
-                    <Post massageMyPost={props.massageMyPost}/>
+                    <Post massageMyPost={props.massageMyPost}
+                          profile={props.profile}
+                    login={props.login}
+                    />
                 </div>
             </div>
         </>
@@ -53,6 +60,7 @@ type FormDataType = {
 const maxLength100 = maxLengthCreator(100)
 
 const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

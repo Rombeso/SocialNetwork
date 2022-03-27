@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import s from './header.module.css'
 import {ProfileType} from "../../redux/profile-reducer";
 import userPhoto from "../../assets/images/pngwing.com.png";
@@ -19,6 +19,11 @@ const [drop, setDrop] = useState<boolean>(false)
     }
     const onDroppingFalse = () => {
       setDrop(false)
+    }
+
+const redirectLogout = () =>{
+    logout()
+    return <Redirect to={'/login'}/>
     }
 
     return <header className={s.header}>
@@ -110,7 +115,7 @@ const [drop, setDrop] = useState<boolean>(false)
                                         </div>
                                         <div className={s.line}></div>
                                         <div className={s.dropDownBlock}>
-                                            <button onClick={logout}>Log out</button>
+                                            <button onClick={redirectLogout}>Log out</button>
                                         </div>
                                     </div>
                                 </div>}

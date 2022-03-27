@@ -4,12 +4,14 @@ import {connect} from "react-redux";
 import {AuthDataType, logout} from "../../redux/auth-reducer";
 import {ReducerRootType} from "../../redux/redux-store";
 import {ProfileType} from "../../redux/profile-reducer";
+import {Redirect} from "react-router-dom";
 
 type AddedPropsType = {
     profile: ProfileType
 }
 
 class HeaderContainer extends React.Component<any> {
+
 
     render() {
 

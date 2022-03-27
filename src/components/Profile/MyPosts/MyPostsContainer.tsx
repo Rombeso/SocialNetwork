@@ -5,7 +5,9 @@ import {addPostAC, ProfileStateType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {ReducerRootType} from "../../../redux/redux-store";
 
-type SomePT = {}
+type SomePT = {
+    login:string | null
+}
 
 export const MyPostsContainer = (props: SomePT) => {
     let profilePage = useSelector<ReducerRootType, ProfileStateType>(state => state.profilePage)
@@ -20,6 +22,7 @@ export const MyPostsContainer = (props: SomePT) => {
             newPostText={profilePage.newPostText}
             addPost={addPost}
             profile={profilePage.profile}
+            login={props.login}
         />
     )
 }

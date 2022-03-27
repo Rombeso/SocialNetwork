@@ -2,6 +2,7 @@ import React from "react";
 import {usersType} from "../../redux/users-reducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
+import s from './users.module.css'
 
 
 type PropsType = {
@@ -30,7 +31,7 @@ export const Users = ({
                       }: PropsType) => {
     let portionSize = 10
     return (
-        <div>
+        <div className={s.usersBlock}>
             <Paginator onPageChanged={onPageChanged} pageSize={pageSize} totalItemsCount={totalUsersCount}
                           currentPage={currentPage} portionSize={portionSize}/>
             <div>

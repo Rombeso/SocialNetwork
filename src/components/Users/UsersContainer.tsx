@@ -17,7 +17,7 @@ import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPage,
-    getFollowingInProgress,
+    getFollowingInProgress, getIsAuth,
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
@@ -35,6 +35,7 @@ type MapStateType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: Array<any>,
+    isAuth: any
 }
 
 type MapDispatchType = {
@@ -88,6 +89,8 @@ class UsersContainer extends React.PureComponent<UsersPropsType> {
                 follow={this.props.follow}
                 users={this.props.users}
                 followingInProgress={this.props.followingInProgress}
+                isAuth={this.props.isAuth}
+
             />}
             {this.props.match.url === '/profile' && <FriendsForProfile
                 users={this.props.users}
@@ -104,6 +107,7 @@ const mapStateToProps = (state: ReducerRootType): MapStateType => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
+        isAuth: getIsAuth(state),
     }
 }
 

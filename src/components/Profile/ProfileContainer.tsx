@@ -3,7 +3,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {ReducerRootType} from "../../redux/redux-store";
 import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {FormProfileDataType} from "./ProfileInfo/ProfileDataForm";
 
@@ -33,7 +33,6 @@ type CommonType = RouteComponentProps<PathParamsType> & OwnPropsType
 class ProfileContainer extends React.Component<CommonType> {
 
     refreshProfile() {
-
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.autorizedUserId !== null ? String(this.props.autorizedUserId) : '';
@@ -52,6 +51,7 @@ class ProfileContainer extends React.Component<CommonType> {
     componentDidUpdate(prevProps: Readonly<CommonType>, prevState: Readonly<{}>, snapshot?: any) {
         if (this.props.match.params.userId != prevProps.match.params.userId)
         this.refreshProfile()
+
     }
 
     render() {
