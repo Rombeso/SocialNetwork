@@ -1,6 +1,16 @@
+.usersBlock {
+    @apply w-full container;
 
+}
+@media (max-width: 690px) {
+    .usersBlock {
+        max-width: 480px;
+    }
+
+}
 .userContainer {
-    @apply flex bg-white rounded border p-4 w-auto;
+    @apply flex bg-white rounded border p-4;
+
 }
 
 .line {
@@ -10,9 +20,7 @@
 .avatarBlock img{
     @apply ml-1 mr-4 rounded-full w-20 h-20 my-1 flex-shrink-0;
 }
-.usersBlock {
-    @apply w-full
-}
+
 
 .mainBlock button {
     @apply mt-1 bg-gray-300 px-2 py-1 rounded

@@ -2,11 +2,12 @@
     @apply bg-white border-b sticky top-0;
     /*grid-area: h;*/
     /*background-color: darkolivegreen;*/
+    min-width: 770px;
 }
 
 .headerContainer {
-    @apply container mx-auto ;
-    max-width: 970px;
+    @apply mx-auto ;
+
 }
 
 .headerContainerItems {

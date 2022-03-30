@@ -34,12 +34,12 @@ export const Users = ({
         <div className={s.usersBlock}>
             <Paginator onPageChanged={onPageChanged} pageSize={pageSize} totalItemsCount={totalUsersCount}
                           currentPage={currentPage} portionSize={portionSize}/>
-            <div>
+            <>
                 {
                     users.map(u => <User user={u} key={u.id} follow={follow} unfollow={unfollow}
                                          followingInProgress={followingInProgress}/>
                     )}
-            </div>
+            </>
         </div>
     )
 }

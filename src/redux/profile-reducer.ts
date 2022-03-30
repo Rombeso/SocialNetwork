@@ -109,7 +109,6 @@ type ThunkType = ThunkAction<void, ReducerRootType, unknown, ActionType>;
 export const saveProfile = (profile: FormProfileDataType): ThunkType => async (dispatch: Dispatch<ActionType>, getState: () => ReducerRootType) => {
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
-    debugger
     if(response.data.resultCode === 0) {
         // @ts-ignore
         dispatch(getUserProfile(userId))

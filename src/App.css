@@ -1,20 +1,20 @@
 
 
-.app-wrapper {
-    width: 1200px;
-    margin: 0 auto;
-    grid-template-areas:
-    "h h h"
-    "n c c";
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 10px;
-}
+/*.app-wrapper {*/
+/*    width: 1200px;*/
+/*    margin: 0 auto;*/
+/*    grid-template-areas:*/
+/*    "h h h"*/
+/*    "n c c";*/
+/*    display: grid;*/
+/*    grid-template-rows: 60px 1fr;*/
+/*    grid-template-columns: 2fr 10fr;*/
+/*    grid-gap: 10px;*/
+/*}*/
 
-.app-wrapper-content {
-    grid-area: c;
-    background-color: mediumturquoise;
-}
+/*.app-wrapper-content {*/
+/*    grid-area: c;*/
+/*    background-color: mediumturquoise;*/
+/*}*/
 
 
